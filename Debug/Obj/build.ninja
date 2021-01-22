@@ -20,8 +20,11 @@ rule browsedata
 
 
 #Build steps
+build exceptions.pbi : index exceptions.xcl
 build main.pbi : index main.xcl
-build Gr22ProjectOS.pbd : link main.pbi
+build startup_sam3x.pbi : index startup_sam3x.xcl
+build system_sam3x.pbi : index system_sam3x.xcl
+build Gr22ProjectOS.pbd : link exceptions.pbi main.pbi startup_sam3x.pbi system_sam3x.pbi
 build Gr22ProjectOS.pbw : browsedata Gr22ProjectOS.pbd
 
 

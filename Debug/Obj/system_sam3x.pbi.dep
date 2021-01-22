@@ -1,6 +1,5 @@
-main.pbi: C:\Users\Johan\OneDrive\Skrivbord\Projekt\ OS\main.c \
-  C:\Users\Johan\OneDrive\Skrivbord\Projekt\ OS/systick.h \
-  C:\Users\Johan\OneDrive\Skrivbord\Projekt\ OS/includes.h \
+system_sam3x.pbi: \
+  C:\Users\Johan\OneDrive\Skrivbord\Projekt\ OS\system_sam3x.c \
   C:\Users\Johan\OneDrive\Skrivbord\Projekt\ OS/at91sam3x8.h \
   C:\Users\Johan\OneDrive\Skrivbord\Projekt\ OS/system_sam3x.h \
   C:\Program\ Files\ (x86)\IAR\ Systems\Embedded\ Workbench\ 8.4\arm\inc\c\stdint.h \

@@ -8,8 +8,6 @@
 
 --device_macro="C:\Program Files (x86)\IAR Systems\Embedded Workbench 8.4\arm\config\debugger\Microchip\SAM3XA.dmac" 
 
---macro="C:\Users\Johan\OneDrive\Skrivbord\Projekt OS\arduino_due_x_sram.mac" 
-
 
 
 

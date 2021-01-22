@@ -1,9 +1,25 @@
-#include <stdio.h>
+#include "systick.h"
+
+//CTRL+ALT+L == FORMAT
 
 
+
+#pragma region Functions
+void init_tasks();
+#pragma endregion Functions
 int main()
 {
+  init_tasks();
 
-  printf("hej");
-  return 0;
+  while (1)
+  {
+    set_task_nr = 1;
+  }
+
+  return 1;
+}
+
+
+void set_task(uint8_t t_nr)
+{
 }

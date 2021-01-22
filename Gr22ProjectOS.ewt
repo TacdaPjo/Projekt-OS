@@ -2841,8 +2841,26 @@
     </configuration>
     <group>
         <name>files</name>
+        <file>
+            <name>$PROJ_DIR$\includes.h</name>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\systick.h</name>
+        </file>
     </group>
     <file>
+        <name>$PROJ_DIR$\cstartup.s</name>
+    </file>
+    <file>
+        <name>$PROJ_DIR$\exceptions.c</name>
+    </file>
+    <file>
         <name>$PROJ_DIR$\main.c</name>
+    </file>
+    <file>
+        <name>$PROJ_DIR$\startup_sam3x.c</name>
+    </file>
+    <file>
+        <name>$PROJ_DIR$\system_sam3x.c</name>
     </file>
 </project>
