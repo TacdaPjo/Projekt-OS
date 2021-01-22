@@ -1,6 +1,6 @@
 ###############################################################################
 #
-# IAR ELF Linker V8.50.9.278/W32 for ARM                  22/Jan/2021  14:46:04
+# IAR ELF Linker V8.50.9.278/W32 for ARM                  22/Jan/2021  20:13:47
 # Copyright 2007-2020 IAR Systems AB.
 #
 #    Output file  =
@@ -10,7 +10,7 @@
 #        C:\Users\Johan\OneDrive\Skrivbord\Projekt
 #        OS\Debug\List\Gr22ProjectOS.map
 #    Command line =
-#        -f C:\Users\Johan\AppData\Local\Temp\EWB3C6.tmp
+#        -f C:\Users\Johan\AppData\Local\Temp\EWBD67.tmp
 #        ("C:\Users\Johan\OneDrive\Skrivbord\Projekt OS\Debug\Obj\cstartup.o"
 #        "C:\Users\Johan\OneDrive\Skrivbord\Projekt OS\Debug\Obj\exceptions.o"
 #        "C:\Users\Johan\OneDrive\Skrivbord\Projekt OS\Debug\Obj\main.o"
@@ -65,46 +65,50 @@ initialize by copy with packing = copy, complex ranges { rw };
     .intvec          const    0x2007'0000   0xf4  startup_sam3x.o [1]
                             - 0x2007'00f4   0xf4
 
-"P1-P2", part 1 of 3:                      0x284
-  .text              ro code  0x2007'00f4  0x140  main.o [1]
-  .text              ro code  0x2007'0234   0x3a  zero_init3.o [3]
-  .text              ro code  0x2007'026e   0x2e  copy_init3.o [3]
-  .text              ro code  0x2007'029c   0x30  startup_sam3x.o [1]
-  .text              ro code  0x2007'02cc    0xc  cstartup.o [1]
-  .text              ro code  0x2007'02d8   0x1e  cmain.o [3]
-  .text              ro code  0x2007'02f6    0x2  exceptions.o [1]
-  .text              ro code  0x2007'02f8   0x28  data_init.o [3]
-  .text              ro code  0x2007'0320    0x4  exit.o [2]
-  .text              ro code  0x2007'0324    0xa  cexit.o [3]
-  .text              ro code  0x2007'0330   0x14  exit.o [4]
-  .iar.init_table    const    0x2007'0344   0x24  - Linker created -
-  .rodata            const    0x2007'0368    0x0  zero_init3.o [3]
-  .rodata            const    0x2007'0368    0x0  copy_init3.o [3]
-  P1-P2 s0                    0x2007'0368    0x8  <Init block>
-    .data            inited   0x2007'0368    0x4  main.o [1]
-    .data            inited   0x2007'036c    0x4  main.o [1]
-  Initializer bytes  const    0x2007'0370    0x8  <for P1-P2 s0>
-                            - 0x2007'0378  0x284
+"P1-P2", part 1 of 3:                      0x314
+  .text              ro code  0x2007'00f4  0x1c8  main.o [1]
+  .text              ro code  0x2007'02bc   0x3a  zero_init3.o [3]
+  .text              ro code  0x2007'02f6   0x2e  copy_init3.o [3]
+  .text              ro code  0x2007'0324   0x30  startup_sam3x.o [1]
+  .text              ro code  0x2007'0354    0xc  cstartup.o [1]
+  .text              ro code  0x2007'0360   0x1e  cmain.o [3]
+  .text              ro code  0x2007'037e    0x2  exceptions.o [1]
+  .text              ro code  0x2007'0380   0x28  data_init.o [3]
+  .text              ro code  0x2007'03a8    0x4  exit.o [2]
+  .text              ro code  0x2007'03ac    0xa  cexit.o [3]
+  .text              ro code  0x2007'03b8   0x14  exit.o [4]
+  .iar.init_table    const    0x2007'03cc   0x24  - Linker created -
+  .rodata            const    0x2007'03f0    0x0  zero_init3.o [3]
+  .rodata            const    0x2007'03f0    0x0  copy_init3.o [3]
+  P1-P2 s0                    0x2007'03f0    0xc  <Init block>
+    .data            inited   0x2007'03f0    0x4  main.o [1]
+    .data            inited   0x2007'03f4    0x4  main.o [1]
+    .data            inited   0x2007'03f8    0x4  main.o [1]
+  Initializer bytes  const    0x2007'03fc    0xc  <for P1-P2 s0>
+                            - 0x2007'0408  0x314
 
-"P1-P2", part 2 of 3:                      0x150
-  .bss               zero     0x2007'0378   0xa0  main.o [1]
-  .bss               zero     0x2007'0418   0xa0  main.o [1]
-  .bss               zero     0x2007'04b8    0x4  main.o [1]
-  .bss               zero     0x2007'04bc    0x4  main.o [1]
-  .bss               zero     0x2007'04c0    0x4  main.o [1]
-  .bss               zero     0x2007'04c4    0x1  main.o [1]
-                            - 0x2007'04c5  0x14d
+"P1-P2", part 2 of 3:                      0x1f4
+  .bss               zero     0x2007'0408   0xa0  main.o [1]
+  .bss               zero     0x2007'04a8   0xa0  main.o [1]
+  .bss               zero     0x2007'0548   0xa0  main.o [1]
+  .bss               zero     0x2007'05e8    0x4  main.o [1]
+  .bss               zero     0x2007'05ec    0x4  main.o [1]
+  .bss               zero     0x2007'05f0    0x4  main.o [1]
+  .bss               zero     0x2007'05f4    0x4  main.o [1]
+  .bss               zero     0x2007'05f8    0x1  main.o [1]
+                            - 0x2007'05f9  0x1f1
 
 "P1-P2", part 3 of 3:                      0x800
-  CSTACK                      0x2007'04c8  0x800  <Block>
-    CSTACK           uninit   0x2007'04c8  0x800  <Block tail>
-                            - 0x2007'0cc8  0x800
+  CSTACK                      0x2007'0600  0x800  <Block>
+    CSTACK           uninit   0x2007'0600  0x800  <Block tail>
+                            - 0x2007'0e00  0x800
 
 Unused ranges:
 
          From           To      Size
          ----           --      ----
-  0x2007'0cc8  0x2008'7fff  0x1'7338
+  0x2007'05fc  0x2007'05ff       0x4
+  0x2007'0e00  0x2008'7fff  0x1'7200
 
 
 *******************************************************************************
@@ -114,14 +118,14 @@ Unused ranges:
           Address      Size
           -------      ----
 Zero (__iar_zero_init3)
-    1 destination range, total size 0x14d:
-          0x2007'0378  0x14d
+    1 destination range, total size 0x1f1:
+          0x2007'0408  0x1f1
 
 Copy (__iar_copy_init3)
-    1 source range, total size 0x8:
-          0x2007'0370    0x8
-    1 destination range, total size 0x8:
-          0x2007'0368    0x8
+    1 source range, total size 0xc:
+          0x2007'03fc    0xc
+    1 destination range, total size 0xc:
+          0x2007'03f0    0xc
 
 
 
@@ -138,10 +142,10 @@ command line/config:
 C:\Users\Johan\OneDrive\Skrivbord\Projekt OS\Debug\Obj: [1]
     cstartup.o            12
     exceptions.o           2
-    main.o               320        8      341
+    main.o               456       12      509
     startup_sam3x.o       48      244
     ------------------------------------------
-    Total:               382      252      341
+    Total:               518      256      509
 
 dl7M_tln.a: [2]
     exit.o                 4
@@ -165,116 +169,120 @@ shb_l.a: [4]
     Gaps                   2
     Linker created                 36    2'048
 ----------------------------------------------
-    Grand Total:         592      288    2'389
+    Grand Total:         728      292    2'557
 
 
 *******************************************************************************
 *** ENTRY LIST
 ***
 
-Entry                       Address  Size  Type      Object
------                       -------  ----  ----      ------
-.iar.init_table$$Base   0x2007'0344         --   Gb  - Linker created -
-.iar.init_table$$Limit  0x2007'0368         --   Gb  - Linker created -
-.intvec$$Base           0x2007'0000         --   Gb  - Linker created -
-.intvec$$Limit          0x2007'00f4         --   Gb  - Linker created -
-?main                   0x2007'02d9        Code  Gb  cmain.o [3]
-ADC_Handler             0x2007'02f7   0x2  Code  Wk  exceptions.o [1]
-BusFault_Handler        0x2007'02f7   0x2  Code  Wk  exceptions.o [1]
-CAN0_Handler            0x2007'02f7   0x2  Code  Wk  exceptions.o [1]
-CAN1_Handler            0x2007'02f7   0x2  Code  Wk  exceptions.o [1]
-CSTACK$$Base            0x2007'04c8         --   Gb  - Linker created -
-CSTACK$$Limit           0x2007'0cc8         --   Gb  - Linker created -
-DACC_Handler            0x2007'02f7   0x2  Code  Wk  exceptions.o [1]
-DMAC_Handler            0x2007'02f7   0x2  Code  Wk  exceptions.o [1]
-DebugMon_Handler        0x2007'02f7   0x2  Code  Wk  exceptions.o [1]
-Dummy_Handler           0x2007'02f7   0x2  Code  Gb  exceptions.o [1]
-EFC0_Handler            0x2007'02f7   0x2  Code  Wk  exceptions.o [1]
-EFC1_Handler            0x2007'02f7   0x2  Code  Wk  exceptions.o [1]
-HSMCI_Handler           0x2007'02f7   0x2  Code  Wk  exceptions.o [1]
-HardFault_Handler       0x2007'02f7   0x2  Code  Wk  exceptions.o [1]
-MemManage_Handler       0x2007'02f7   0x2  Code  Wk  exceptions.o [1]
-NMI_Handler             0x2007'02f7   0x2  Code  Wk  exceptions.o [1]
-PIOA_Handler            0x2007'02f7   0x2  Code  Wk  exceptions.o [1]
-PIOB_Handler            0x2007'02f7   0x2  Code  Wk  exceptions.o [1]
-PIOC_Handler            0x2007'02f7   0x2  Code  Wk  exceptions.o [1]
-PIOD_Handler            0x2007'02f7   0x2  Code  Wk  exceptions.o [1]
-PMC_Handler             0x2007'02f7   0x2  Code  Wk  exceptions.o [1]
-PWM_Handler             0x2007'02f7   0x2  Code  Wk  exceptions.o [1]
-PendSV_Handler          0x2007'02f7   0x2  Code  Wk  exceptions.o [1]
-RSTC_Handler            0x2007'02f7   0x2  Code  Wk  exceptions.o [1]
-RTC_Handler             0x2007'02f7   0x2  Code  Wk  exceptions.o [1]
-RTT_Handler             0x2007'02f7   0x2  Code  Wk  exceptions.o [1]
-Region$$Table$$Base     0x2007'0344         --   Gb  - Linker created -
-Region$$Table$$Limit    0x2007'0368         --   Gb  - Linker created -
-Reset_Handler           0x2007'02c5   0x8  Code  Gb  startup_sam3x.o [1]
-SPI0_Handler            0x2007'02f7   0x2  Code  Wk  exceptions.o [1]
-SSC_Handler             0x2007'02f7   0x2  Code  Wk  exceptions.o [1]
-SUPC_Handler            0x2007'02f7   0x2  Code  Wk  exceptions.o [1]
-SVC_Handler             0x2007'02f7   0x2  Code  Wk  exceptions.o [1]
-SysTick_Handler         0x2007'01bf  0x38  Code  Gb  main.o [1]
-TC0_Handler             0x2007'02f7   0x2  Code  Wk  exceptions.o [1]
-TC1_Handler             0x2007'02f7   0x2  Code  Wk  exceptions.o [1]
-TC2_Handler             0x2007'02f7   0x2  Code  Wk  exceptions.o [1]
-TC3_Handler             0x2007'02f7   0x2  Code  Wk  exceptions.o [1]
-TC4_Handler             0x2007'02f7   0x2  Code  Wk  exceptions.o [1]
-TC5_Handler             0x2007'02f7   0x2  Code  Wk  exceptions.o [1]
-TRNG_Handler            0x2007'02f7   0x2  Code  Wk  exceptions.o [1]
-TWI0_Handler            0x2007'02f7   0x2  Code  Wk  exceptions.o [1]
-TWI1_Handler            0x2007'02f7   0x2  Code  Wk  exceptions.o [1]
-UART_Handler            0x2007'02f7   0x2  Code  Wk  exceptions.o [1]
-UOTGHS_Handler          0x2007'02f7   0x2  Code  Wk  exceptions.o [1]
-USART0_Handler          0x2007'02f7   0x2  Code  Wk  exceptions.o [1]
-USART1_Handler          0x2007'02f7   0x2  Code  Wk  exceptions.o [1]
-USART2_Handler          0x2007'02f7   0x2  Code  Wk  exceptions.o [1]
-UsageFault_Handler      0x2007'02f7   0x2  Code  Wk  exceptions.o [1]
-WDT_Handler             0x2007'02f7   0x2  Code  Wk  exceptions.o [1]
-__cmain                 0x2007'02d9        Code  Gb  cmain.o [3]
-__exit                  0x2007'0331  0x14  Code  Gb  exit.o [4]
-__iar_copy_init3        0x2007'026f  0x2e  Code  Gb  copy_init3.o [3]
-__iar_data_init3        0x2007'02f9  0x28  Code  Gb  data_init.o [3]
-__iar_program_start     0x2007'02cd        Code  Gb  cstartup.o [1]
-__iar_zero_init3        0x2007'0235  0x3a  Code  Gb  zero_init3.o [3]
-__low_level_init        0x2007'029d  0x20  Code  Gb  startup_sam3x.o [1]
+Entry                       Address   Size  Type      Object
+-----                       -------   ----  ----      ------
+.iar.init_table$$Base   0x2007'03cc          --   Gb  - Linker created -
+.iar.init_table$$Limit  0x2007'03f0          --   Gb  - Linker created -
+.intvec$$Base           0x2007'0000          --   Gb  - Linker created -
+.intvec$$Limit          0x2007'00f4          --   Gb  - Linker created -
+?main                   0x2007'0361         Code  Gb  cmain.o [3]
+ADC_Handler             0x2007'037f    0x2  Code  Wk  exceptions.o [1]
+BusFault_Handler        0x2007'037f    0x2  Code  Wk  exceptions.o [1]
+CAN0_Handler            0x2007'037f    0x2  Code  Wk  exceptions.o [1]
+CAN1_Handler            0x2007'037f    0x2  Code  Wk  exceptions.o [1]
+CSTACK$$Base            0x2007'0600          --   Gb  - Linker created -
+CSTACK$$Limit           0x2007'0e00          --   Gb  - Linker created -
+DACC_Handler            0x2007'037f    0x2  Code  Wk  exceptions.o [1]
+DMAC_Handler            0x2007'037f    0x2  Code  Wk  exceptions.o [1]
+DebugMon_Handler        0x2007'037f    0x2  Code  Wk  exceptions.o [1]
+Dummy_Handler           0x2007'037f    0x2  Code  Gb  exceptions.o [1]
+EFC0_Handler            0x2007'037f    0x2  Code  Wk  exceptions.o [1]
+EFC1_Handler            0x2007'037f    0x2  Code  Wk  exceptions.o [1]
+HSMCI_Handler           0x2007'037f    0x2  Code  Wk  exceptions.o [1]
+HardFault_Handler       0x2007'037f    0x2  Code  Wk  exceptions.o [1]
+MemManage_Handler       0x2007'037f    0x2  Code  Wk  exceptions.o [1]
+NMI_Handler             0x2007'037f    0x2  Code  Wk  exceptions.o [1]
+PIOA_Handler            0x2007'037f    0x2  Code  Wk  exceptions.o [1]
+PIOB_Handler            0x2007'037f    0x2  Code  Wk  exceptions.o [1]
+PIOC_Handler            0x2007'037f    0x2  Code  Wk  exceptions.o [1]
+PIOD_Handler            0x2007'037f    0x2  Code  Wk  exceptions.o [1]
+PMC_Handler             0x2007'037f    0x2  Code  Wk  exceptions.o [1]
+PWM_Handler             0x2007'037f    0x2  Code  Wk  exceptions.o [1]
+PendSV_Handler          0x2007'037f    0x2  Code  Wk  exceptions.o [1]
+RSTC_Handler            0x2007'037f    0x2  Code  Wk  exceptions.o [1]
+RTC_Handler             0x2007'037f    0x2  Code  Wk  exceptions.o [1]
+RTT_Handler             0x2007'037f    0x2  Code  Wk  exceptions.o [1]
+Region$$Table$$Base     0x2007'03cc          --   Gb  - Linker created -
+Region$$Table$$Limit    0x2007'03f0          --   Gb  - Linker created -
+Reset_Handler           0x2007'034d    0x8  Code  Gb  startup_sam3x.o [1]
+SPI0_Handler            0x2007'037f    0x2  Code  Wk  exceptions.o [1]
+SSC_Handler             0x2007'037f    0x2  Code  Wk  exceptions.o [1]
+SUPC_Handler            0x2007'037f    0x2  Code  Wk  exceptions.o [1]
+SVC_Handler             0x2007'037f    0x2  Code  Wk  exceptions.o [1]
+SysTick_Handler         0x2007'0221   0x4a  Code  Gb  main.o [1]
+TC0_Handler             0x2007'037f    0x2  Code  Wk  exceptions.o [1]
+TC1_Handler             0x2007'037f    0x2  Code  Wk  exceptions.o [1]
+TC2_Handler             0x2007'037f    0x2  Code  Wk  exceptions.o [1]
+TC3_Handler             0x2007'037f    0x2  Code  Wk  exceptions.o [1]
+TC4_Handler             0x2007'037f    0x2  Code  Wk  exceptions.o [1]
+TC5_Handler             0x2007'037f    0x2  Code  Wk  exceptions.o [1]
+TRNG_Handler            0x2007'037f    0x2  Code  Wk  exceptions.o [1]
+TWI0_Handler            0x2007'037f    0x2  Code  Wk  exceptions.o [1]
+TWI1_Handler            0x2007'037f    0x2  Code  Wk  exceptions.o [1]
+UART_Handler            0x2007'037f    0x2  Code  Wk  exceptions.o [1]
+UOTGHS_Handler          0x2007'037f    0x2  Code  Wk  exceptions.o [1]
+USART0_Handler          0x2007'037f    0x2  Code  Wk  exceptions.o [1]
+USART1_Handler          0x2007'037f    0x2  Code  Wk  exceptions.o [1]
+USART2_Handler          0x2007'037f    0x2  Code  Wk  exceptions.o [1]
+UsageFault_Handler      0x2007'037f    0x2  Code  Wk  exceptions.o [1]
+WDT_Handler             0x2007'037f    0x2  Code  Wk  exceptions.o [1]
+__cmain                 0x2007'0361         Code  Gb  cmain.o [3]
+__exit                  0x2007'03b9   0x14  Code  Gb  exit.o [4]
+__iar_copy_init3        0x2007'02f7   0x2e  Code  Gb  copy_init3.o [3]
+__iar_data_init3        0x2007'0381   0x28  Code  Gb  data_init.o [3]
+__iar_program_start     0x2007'0355         Code  Gb  cstartup.o [1]
+__iar_zero_init3        0x2007'02bd   0x3a  Code  Gb  zero_init3.o [3]
+__low_level_init        0x2007'0325   0x20  Code  Gb  startup_sam3x.o [1]
 __region_NFC_RAM_end__ {Abs}
-                        0x2010'0fff        Data  Gb  <internal module>
+                        0x2010'0fff         Data  Gb  <internal module>
 __region_NFC_RAM_start__ {Abs}
-                        0x2010'0000        Data  Gb  <internal module>
+                        0x2010'0000         Data  Gb  <internal module>
 __region_RAM0_end__ {Abs}
-                        0x2000'ffff        Data  Gb  <internal module>
+                        0x2000'ffff         Data  Gb  <internal module>
 __region_RAM0_size__ {Abs}
-                           0x1'0000        Data  Gb  <internal module>
+                           0x1'0000         Data  Gb  <internal module>
 __region_RAM0_start__ {Abs}
-                        0x2000'0000        Data  Gb  <internal module>
+                        0x2000'0000         Data  Gb  <internal module>
 __region_RAM1_end__ {Abs}
-                        0x2008'7fff        Data  Gb  <internal module>
+                        0x2008'7fff         Data  Gb  <internal module>
 __region_RAM1_size__ {Abs}
-                             0x8000        Data  Gb  <internal module>
+                             0x8000         Data  Gb  <internal module>
 __region_RAM1_start__ {Abs}
-                        0x2008'0000        Data  Gb  <internal module>
+                        0x2008'0000         Data  Gb  <internal module>
 __region_RAM_end__ {Abs}
-                        0x2008'7fff        Data  Gb  <internal module>
+                        0x2008'7fff         Data  Gb  <internal module>
 __region_RAM_size__ {Abs}
-                           0x1'8000        Data  Gb  <internal module>
+                           0x1'8000         Data  Gb  <internal module>
 __region_RAM_start__ {Abs}
-                        0x2007'0000        Data  Gb  <internal module>
-__vector_table          0x2007'0000  0xf4  Data  Gb  startup_sam3x.o [1]
-_call_main              0x2007'02e5        Code  Gb  cmain.o [3]
-_exit                   0x2007'0325        Code  Gb  cexit.o [3]
-_main                   0x2007'02ef        Code  Gb  cmain.o [3]
-exit                    0x2007'0321   0x4  Code  Gb  exit.o [2]
-f1                      0x2007'04b8   0x4  Data  Gb  main.o [1]
-f2                      0x2007'04bc   0x4  Data  Gb  main.o [1]
-function1               0x2007'01f9   0xa  Code  Gb  main.o [1]
-function2               0x2007'0205   0xa  Code  Gb  main.o [1]
-init_tasks              0x2007'00f5  0xca  Code  Gb  main.o [1]
-main                    0x2007'020f   0xe  Code  Gb  main.o [1]
-set_task_nr             0x2007'04c4   0x1  Data  Gb  main.o [1]
-sp_f1                   0x2007'0368   0x4  Data  Gb  main.o [1]
-sp_f2                   0x2007'036c   0x4  Data  Gb  main.o [1]
-stack_f1                0x2007'0378  0xa0  Data  Gb  main.o [1]
-stack_f2                0x2007'0418  0xa0  Data  Gb  main.o [1]
-ticks                   0x2007'04c0   0x4  Data  Gb  main.o [1]
+                        0x2007'0000         Data  Gb  <internal module>
+__vector_table          0x2007'0000   0xf4  Data  Gb  startup_sam3x.o [1]
+_call_main              0x2007'036d         Code  Gb  cmain.o [3]
+_exit                   0x2007'03ad         Code  Gb  cexit.o [3]
+_main                   0x2007'0377         Code  Gb  cmain.o [3]
+exit                    0x2007'03a9    0x4  Code  Gb  exit.o [2]
+f1                      0x2007'05e8    0x4  Data  Gb  main.o [1]
+f2                      0x2007'05ec    0x4  Data  Gb  main.o [1]
+f3                      0x2007'05f0    0x4  Data  Gb  main.o [1]
+function1               0x2007'026d    0xa  Code  Gb  main.o [1]
+function2               0x2007'0279    0xa  Code  Gb  main.o [1]
+function3               0x2007'0285    0xa  Code  Gb  main.o [1]
+init_tasks              0x2007'00f5  0x12c  Code  Gb  main.o [1]
+main                    0x2007'028f    0xe  Code  Gb  main.o [1]
+set_task_nr             0x2007'05f8    0x1  Data  Gb  main.o [1]
+sp_f1                   0x2007'03f0    0x4  Data  Gb  main.o [1]
+sp_f2                   0x2007'03f4    0x4  Data  Gb  main.o [1]
+sp_f3                   0x2007'03f8    0x4  Data  Gb  main.o [1]
+stack_f1                0x2007'0408   0xa0  Data  Gb  main.o [1]
+stack_f2                0x2007'04a8   0xa0  Data  Gb  main.o [1]
+stack_f3                0x2007'0548   0xa0  Data  Gb  main.o [1]
+ticks                   0x2007'05f4    0x4  Data  Gb  main.o [1]
 
 
 [1] = C:\Users\Johan\OneDrive\Skrivbord\Projekt OS\Debug\Obj
@@ -282,9 +290,9 @@ ticks                   0x2007'04c0   0x4  Data  Gb  main.o [1]
 [3] = rt7M_tl.a
 [4] = shb_l.a
 
-    592 bytes of readonly  code memory
-    288 bytes of readonly  data memory
-  2'389 bytes of readwrite data memory
+    728 bytes of readonly  code memory
+    292 bytes of readonly  data memory
+  2'557 bytes of readwrite data memory
 
 Errors: none
 Warnings: none
