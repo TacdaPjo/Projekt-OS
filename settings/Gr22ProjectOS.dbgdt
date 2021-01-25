@@ -850,7 +850,7 @@
                     <item>f2</item>
                     <item>sp_f3</item>
                     <item>f3</item>
-                    <item></item>
+                    <item />
                 </expressions>
                 <col-names>
                     <item>Expression</item>

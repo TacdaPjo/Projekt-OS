@@ -22,7 +22,6 @@ void function3();
 
 #define CLKSPEED 83999
 #define MAXTICKS 10
-
 volatile uint32_t ticks = 0;
 
 void init_tasks()
@@ -53,7 +52,6 @@ void init_tasks()
     *(--sp_f3) = 0x2U;                      // R2
     *(--sp_f3) = 0x1U;                      // R1
     *(--sp_f3) = 0x0U;                      // R0
-
 }
 
 void systickone_config()
@@ -73,7 +71,6 @@ void SysTick_Handler()
             set_task_nr = 2;
             __set_SP((unsigned int)sp_f2);
         }
-
         else if (set_task_nr == 2)
         {
             set_task_nr = 3;
@@ -87,7 +84,6 @@ void SysTick_Handler()
     }
 }
 
-
 void function1()
 {
 
@@ -96,6 +92,7 @@ void function1()
         f1++;
     }
 }
+
 void function2()
 {
 
@@ -104,6 +101,7 @@ void function2()
         f2++;
     }
 }
+
 void function3()
 {
 

@@ -20,11 +20,15 @@ rule browsedata
 
 
 #Build steps
+build miros.pbi : index miros.xcl
 build exceptions.pbi : index exceptions.xcl
 build main.pbi : index main.xcl
 build startup_sam3x.pbi : index startup_sam3x.xcl
 build system_sam3x.pbi : index system_sam3x.xcl
-build Gr22ProjectOS.pbd : link exceptions.pbi main.pbi startup_sam3x.pbi system_sam3x.pbi
+build Gr22ProjectOS_part0.pbi : link miros.pbi exceptions.pbi
+build Gr22ProjectOS_part1.pbi : link main.pbi startup_sam3x.pbi
+build Gr22ProjectOS_part2.pbi : link system_sam3x.pbi
+build Gr22ProjectOS.pbd : link Gr22ProjectOS_part0.pbi Gr22ProjectOS_part1.pbi Gr22ProjectOS_part2.pbi
 build Gr22ProjectOS.pbw : browsedata Gr22ProjectOS.pbd
 
 

@@ -2845,7 +2845,13 @@
             <name>$PROJ_DIR$\includes.h</name>
         </file>
         <file>
-            <name>$PROJ_DIR$\systick.h</name>
+            <name>$PROJ_DIR$\miros.c</name>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\miros.h</name>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\Systick.h</name>
         </file>
     </group>
     <file>
