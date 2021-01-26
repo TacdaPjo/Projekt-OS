@@ -3,7 +3,7 @@
 /** Modified  on 27th Feb 2019                           */
 /*********************************************************/
 
-#include <stdlib.h>  /* for using the functions calloc, free */
+#include <stdlib.h> /* for using the functions calloc, free */
 #include <string.h>  /* for using the function memcpy        */
 #include <limits.h>  /* for using the constant UINT_MAX      */
 
@@ -90,7 +90,7 @@ typedef struct _list {
 
 
 // Task administration
-int             init_kernel(void);
+int             init_kernel(void); 
 exception	create_task( void (* body)(), uint d );
 void            terminate( void );
 void            run( void );

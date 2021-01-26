@@ -1,13 +1,22 @@
 #include "systick.h"
-
+#include "kernel_functions_march_2019.h"
 //CTRL+ALT+L == FORMAT
 
 #pragma region Functions
 void init_tasks();
+void systickone_config();
 #pragma endregion Functions
+
+
+
+
 int main()
 {
+  systickone_config();
   init_tasks();
+  
+  
+
 
   while (1)
   {
