@@ -1,5 +1,5 @@
-#ifndef KERNEL_H
-#define KERNEL_H
+#ifndef KERNEL_H_INCLUDED
+#define KERNEL_H_INCLUDED
 
 #include <stdlib.h> /* for using the functions calloc, free */
 

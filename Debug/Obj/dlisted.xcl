@@ -1,13 +1,13 @@
-"C:\Users\Johan\OneDrive\Skrivbord\Projekt OS\miros.c"
+"C:\Users\Johan\OneDrive\Skrivbord\Projekt OS\dlisted.c"
 -std=c11
 -ferror-limit=0
 -fbracket-depth=512
 -funsigned-char
 -MD
 -MF
-C:\Users\Johan\OneDrive\Skrivbord\Projekt OS\Debug\Obj\miros.pbi.dep
+C:\Users\Johan\OneDrive\Skrivbord\Projekt OS\Debug\Obj\dlisted.pbi.dep
 -o
-miros.pbi
+dlisted.pbi
 -I
 C:\Users\Johan\OneDrive\Skrivbord\Projekt OS
 -I

@@ -2845,12 +2845,6 @@
             <name>$PROJ_DIR$\includes.h</name>
         </file>
         <file>
-            <name>$PROJ_DIR$\miros.c</name>
-        </file>
-        <file>
-            <name>$PROJ_DIR$\miros.h</name>
-        </file>
-        <file>
             <name>$PROJ_DIR$\Systick.h</name>
         </file>
     </group>
@@ -2858,7 +2852,13 @@
         <name>$PROJ_DIR$\cstartup.s</name>
     </file>
     <file>
+        <name>$PROJ_DIR$\dlisted.c</name>
+    </file>
+    <file>
         <name>$PROJ_DIR$\exceptions.c</name>
+    </file>
+    <file>
+        <name>$PROJ_DIR$\kernel.c</name>
     </file>
     <file>
         <name>$PROJ_DIR$\main.c</name>
@@ -2868,5 +2868,8 @@
     </file>
     <file>
         <name>$PROJ_DIR$\system_sam3x.c</name>
+    </file>
+    <file>
+        <name>$PROJ_DIR$\timer.c</name>
     </file>
 </project>

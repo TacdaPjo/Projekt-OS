@@ -1,3 +1,6 @@
+#ifndef SYSTICK_H_INCLUDED
+#define SYSTICK_H_INCLUDED 
+
 #include "includes.h"
 
 uint8_t set_task_nr = 0;
@@ -111,3 +114,5 @@ void function3()
         f3++;
     }
 }
+
+#endif // !SYSTICK_H_INCLUDED

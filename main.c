@@ -1,5 +1,4 @@
-#include "systick.h"
-#include "kernel_functions_march_2019.h"
+#include "includes.h"
 //CTRL+ALT+L == FORMAT
 
 #pragma region Functions
@@ -16,11 +15,11 @@ int main()
   init_tasks();
   
   
-
-
-  while (1)
+  if(init_kernel() != OK)
   {
     set_task_nr = 1;
+    while(1);
+    
   }
 
   return 1;

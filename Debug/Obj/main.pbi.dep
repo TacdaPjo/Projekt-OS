@@ -1,5 +1,4 @@
 main.pbi: C:\Users\Johan\OneDrive\Skrivbord\Projekt\ OS\main.c \
-  C:\Users\Johan\OneDrive\Skrivbord\Projekt\ OS/systick.h \
   C:\Users\Johan\OneDrive\Skrivbord\Projekt\ OS/includes.h \
   C:\Users\Johan\OneDrive\Skrivbord\Projekt\ OS/at91sam3x8.h \
   C:\Users\Johan\OneDrive\Skrivbord\Projekt\ OS/system_sam3x.h \
@@ -14,10 +13,11 @@ main.pbi: C:\Users\Johan\OneDrive\Skrivbord\Projekt\ OS\main.c \
   C:\Program\ Files\ (x86)\IAR\ Systems\Embedded\ Workbench\ 8.4\arm\inc\c\cmsis_iar.h \
   C:\Program\ Files\ (x86)\IAR\ Systems\Embedded\ Workbench\ 8.4\arm\inc\c/iccarm_builtin.h \
   C:\Users\Johan\OneDrive\Skrivbord\Projekt\ OS/core_cmFunc.h \
-  C:\Users\Johan\OneDrive\Skrivbord\Projekt\ OS/kernel_functions_march_2019.h \
+  C:\Users\Johan\OneDrive\Skrivbord\Projekt\ OS/kernel.h \
   C:\Program\ Files\ (x86)\IAR\ Systems\Embedded\ Workbench\ 8.4\arm\inc\c\stdlib.h \
   C:\Program\ Files\ (x86)\IAR\ Systems\Embedded\ Workbench\ 8.4\arm\inc\c\ysizet.h \
   C:\Program\ Files\ (x86)\IAR\ Systems\Embedded\ Workbench\ 8.4\arm\inc\c\DLib_Product_stdlib.h \
-  C:\Program\ Files\ (x86)\IAR\ Systems\Embedded\ Workbench\ 8.4\arm\inc\c\string.h \
-  C:\Program\ Files\ (x86)\IAR\ Systems\Embedded\ Workbench\ 8.4\arm\inc\c\DLib_Product_string.h \
-  C:\Program\ Files\ (x86)\IAR\ Systems\Embedded\ Workbench\ 8.4\arm\inc\c\limits.h
+  C:\Program\ Files\ (x86)\IAR\ Systems\Embedded\ Workbench\ 8.4\arm\inc\c\limits.h \
+  C:\Program\ Files\ (x86)\IAR\ Systems\Embedded\ Workbench\ 8.4\arm\inc\c\assert.h \
+  C:\Users\Johan\OneDrive\Skrivbord\Projekt\ OS/dlisted.h \
+  C:\Users\Johan\OneDrive\Skrivbord\Projekt\ OS/Systick.h
