@@ -2,7 +2,6 @@
 #include "at91sam3x8.h"
 #include "kernel.h"
 
-// #include "context_switching_functions_march_2019.s"
 //CTRL+ALT+L == FORMAT
 //CTRL+ALT+F == FULLSCREEN
 

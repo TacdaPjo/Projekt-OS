@@ -10,18 +10,18 @@ void set_deadline(uint nNew);
 
 
 #pragma region var
-//volatile unsigned int count = 0;
+
 #pragma endregion var
 
 
 void set_ticks(uint nTicks)
 {
-    count = nTicks;
+    tickCounter = nTicks;
 }
 
 uint ticks(void)
 {
-    return count;
+    return tickCounter;
 }
 
 exception wait(uint nTicks)

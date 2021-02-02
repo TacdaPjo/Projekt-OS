@@ -1,8 +1,5 @@
 #include "data.h"
 
-uint32_t memCounter;
-uint32_t kernelMode;
-uint32_t tickCounter;
 
 extern TCB idle_task;
 
@@ -11,7 +8,8 @@ void idleTask();
 void TimerInt();
 exception init_kernel(void);
 exception create_task(void (*body)(), uint d);
-list *create_task_list(void);
+TaskList *create_task_list(void);
+exception Add_task_tolist(TaskList *taskList, TCB *task);
 void *allocSafe(size_t size);
 void safeData_free(void *safeData);
 void terminate(void);
@@ -75,14 +73,13 @@ exception init_kernel(void)
   if ((TimerList = create_task_list()) == NULL)
     return FAIL;
 
-
   //Set the kernel in INIT mode
   kernelMode = INIT;
 
-
   //Create an Idle task
-  if (!create_task(&idleTask, UINT_MAX))
+  if (!create_task(&idleTask, 5000))
     return FAIL;
+
 
 
   return SUCCESS;
@@ -95,8 +92,10 @@ exception init_kernel(void)
 */
 void idleTask()
 {
-  while (1);
-  //TimerInt();
+  while (1)
+  {
+    TimerInt();
+  }
 }
 
 exception create_task(void (*taskBody)(), uint d)
@@ -116,23 +115,64 @@ exception create_task(void (*taskBody)(), uint d)
   task->StackSeg[STACK_SIZE - 3] = (unsigned int)taskBody;
   task->SP = &(task->StackSeg[STACK_SIZE - 9]);
 
-  if(kernelMode == INIT)
-  { 
+  if (kernelMode == INIT)
+  {
+    Add_task_tolist(ReadyList, task);
     return SUCCESS;
   }
   // after the mandatory initialization you can implement the rest of the suggested pseudocode
+
+  else
+  {
+    isr_off();
+
+    PreviousTask = (TCB *)ReadyList->pTail;
+
+    Add_task_tolist(ReadyList, task);
+
+    NextTask = (TCB *)ReadyList->pHead;
+
+    SwitchContext();
+  }
 
   return SUCCESS;
 }
 
 void terminate(void)
 {
+
+   isr_off();
+
+  // leavingObj = extract(ReadyList->pHead);
+    deleteTask(removeTask(ReadyList->pHead));
+  /* extract() detaches the head node from the ReadyList and
+  * returns the list object of the running task */
+   NextTask = (TCB *) ReadyList->pHead->pTask;
+   switch_to_stack_of_next_stack();
+
+  // free(leavingObj->pTask);
+  // free(leavingObj);
+   LoadContext_In_Terminate();
+  /* supplied to you in the assembly file
+ * does not save any of the registers. Specifically, does not save the
+ * process stack pointer (psp), but
+ * simply restores registers from saved values from the TCB of NextTask
+ * note: the stack pointer is restored from NextTask->SP
+ */
 }
 
 void run(void)
 {
+  //Initialize interrupt timer {Ticks = 0;}
+
+  set_ticks(0);
+
+  kernelMode = RUNNING;
+
+  NextTask = (TCB*)ReadyList->pHead->pTask;
   //NextTask = ReadyList->pHead->pTask;
-  //LoadContext_In_Run();
+
+  LoadContext_In_Run();
 
   /* supplied to you in the assembly file
  * does not save any of the registers
@@ -141,16 +181,7 @@ void run(void)
  */
 }
 
-void PreviousTask(void)
+void TimerInt(void)
 {
-}
-
-void NextTask(void)
-{
-}
-
-
-void TimerInt(void) 
-{
-    count++;
+  tickCounter++;
 }

@@ -3,26 +3,31 @@
 
 #include "kernel.h"
 
-
 typedef int i32;
 typedef int b32;
 
 typedef list TaskList;
 typedef listobj TaskNode;
 
-extern i32 count = 0;
 // ================================= TYPES/DATA =================================== //
 
-/* extern i32 memCounter;
-extern i32 kernelMode;
-extern i32 tickCounter; */
+//int Ticks; /* global sysTick counter */
+//int KernelMode; /* can be equal to either INIT or RUNNING (constants defined * in “kernel_functions.h”)*/
+//list *ReadyList, *WaitingList, *TimerList;
+
+extern i32 memCounter = 0;
+extern i32 kernelMode = 0;
+extern i32 tickCounter = 0;
 
 extern TaskList *timerList;
 extern TaskList *waitList;
 extern TaskList *readyList;
 extern TCB *Running;
 
-// ====================================== TASKS API  ====================================== //
+TCB *PreviousTask;
+TCB *NextTask;   /* Pointers to previous and next running tasks */
+
+/* // ====================================== TASKS API  ====================================== //
 
 TCB *getTCB(const TaskNode *const task);
 uint getDeadline(const TaskNode *const task);
@@ -72,11 +77,18 @@ msg *msgPopBack(mailbox *const mBox);
 b32 msgRecIsWaiting(const mailbox *const mBox);
 b32 msgSndIsWaiting(const mailbox *const mBox);
 
-// ============================================================================================ //
+// ============================================================================================ // */
+
+TaskNode *create_listobj(TCB *task);
+exception Add_task_tolist(list *taskList, TCB *task);
+int compare_listobj(TaskNode *obj1, TaskNode *obj2);
+TaskList *create_task_list(void);
+void deleteTask(TaskNode* task);
+TaskNode* removeTask(TaskNode* task);
 
 void TimerInt(void);
 
 void *allocSafe(size_t size);
-void safeData_free (void *Safedata);
+void safeData_free(void *Safedata);
 
 #endif
