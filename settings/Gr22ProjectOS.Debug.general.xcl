@@ -1,12 +1,16 @@
 "C:\Program Files (x86)\IAR Systems\Embedded Workbench 8.4\arm\bin\armproc.dll" 
 
-"C:\Program Files (x86)\IAR Systems\Embedded Workbench 8.4\arm\bin\armsim2.dll" 
+"C:\Program Files (x86)\IAR Systems\Embedded Workbench 8.4\arm\bin\armjlink2.dll" 
 
 "C:\Users\Johan\OneDrive\Skrivbord\Projekt OS\Debug\Exe\Gr22ProjectOS.out" 
 
 --plugin="C:\Program Files (x86)\IAR Systems\Embedded Workbench 8.4\arm\bin\armbat.dll" 
 
 --device_macro="C:\Program Files (x86)\IAR Systems\Embedded Workbench 8.4\arm\config\debugger\Microchip\SAM3XA.dmac" 
+
+--macro="C:\Users\Johan\OneDrive\Skrivbord\Projekt OS\arduino_due_x_sram.mac" 
+
+--flash_loader="C:\Program Files (x86)\IAR Systems\Embedded Workbench 8.4\arm\config\flashloader\Microchip\sam3x8\sam3x8-flash.board" 
 
 
 

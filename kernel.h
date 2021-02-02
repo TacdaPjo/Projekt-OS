@@ -1,7 +1,13 @@
-#ifndef KERNEL_H_INCLUDED
-#define KERNEL_H_INCLUDED
+/*********************************************************/
+/** Global variables and definitions                     */
+/** Modified  on 27th Feb 2019                           */
+/*********************************************************/
+#ifndef KERNEL_H
+#define KERNEL_H
 
 #include <stdlib.h> /* for using the functions calloc, free */
+#include <string.h> /* for using the function memcpy        */
+#include <limits.h> /* for using the constant UINT_MAX      */
 
 #define CONTEXT_SIZE 8 /*  for the 8 registers: r4 to r11   */
 #define STACK_SIZE 100 /*  about enough space for the stack */
@@ -22,6 +28,10 @@
 #define SENDER +1
 #define RECEIVER -1
 
+extern void NextTask(void);
+extern void PreviousTask(void);
+extern void TimerInt(void);
+
 typedef int exception;
 typedef int bool;
 typedef unsigned int uint;
@@ -29,61 +39,61 @@ typedef int action;
 
 struct l_obj; // Forward declaration
 
-// Task Control Block, TCB.
+// Task Control Block, TCB.  Modified on 24/02/2019
 typedef struct
 {
-    //uint    Context[CONTEXT_SIZE];
-    uint *SP;
-    uint R4toR11[CONTEXT_SIZE];
-    //void    (*LR)();
-    void (*PC)();
-    uint SPSR;
-    uint StackSeg[STACK_SIZE];
-    uint Deadline;
+        //uint    Context[CONTEXT_SIZE];
+        uint *SP;
+        uint R4toR11[CONTEXT_SIZE];
+        //void    (*LR)();
+        void (*PC)();
+        uint SPSR;
+        uint StackSeg[STACK_SIZE];
+        uint Deadline;
 } TCB;
 
 // Message items
 typedef struct msgobj
 {
-    char *pData;
-    exception Status;
-    struct l_obj *pBlock;
-    struct msgobj *pPrevious;
-    struct msgobj *pNext;
+        char *pData;
+        exception Status;
+        struct l_obj *pBlock;
+        struct msgobj *pPrevious;
+        struct msgobj *pNext;
 } msg;
 
 // Mailbox structure
 typedef struct
 {
-    msg *pHead;
-    msg *pTail;
-    int nDataSize;
-    int nMaxMessages;
-    int nMessages;
-    int nBlockedMsg;
+        msg *pHead;
+        msg *pTail;
+        int nDataSize;
+        int nMaxMessages;
+        int nMessages;
+        int nBlockedMsg;
 } mailbox;
 
 // Generic list item
 typedef struct l_obj
 {
-    TCB *pTask;
-    uint nTCnt;
-    msg *pMessage;
-    struct l_obj *pPrevious;
-    struct l_obj *pNext;
+        TCB *pTask;
+        uint nTCnt;
+        msg *pMessage;
+        struct l_obj *pPrevious;
+        struct l_obj *pNext;
 } listobj;
 
 // Generic list
 typedef struct _list
 {
-    listobj *pHead;
-    listobj *pTail;
+        listobj *pHead;
+        listobj *pTail;
 } list;
 
 // Function prototypes
 
 // Task administration
-int init_kernel(void);
+exception init_kernel(void);
 exception create_task(void (*body)(), uint d);
 void terminate(void);
 void run(void);
@@ -125,4 +135,9 @@ extern void switch_to_stack_of_next_task(void);
 extern void LoadContext_In_Terminate(void);
 /* To be used on the last line of the C function terminate() */
 
-#endif
+#include "data.h"
+#include "kernel_admin.c"
+#include "timing.c"
+#include "tasks.c"
+
+#endif // !KERNEL_H

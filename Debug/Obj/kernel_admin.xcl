@@ -1,13 +1,13 @@
-"C:\Users\Johan\OneDrive\Skrivbord\Projekt OS\kernel.c"
+"C:\Users\Johan\OneDrive\Skrivbord\Projekt OS\kernel_admin.c"
 -std=c11
 -ferror-limit=0
 -fbracket-depth=512
 -funsigned-char
 -MD
 -MF
-C:\Users\Johan\OneDrive\Skrivbord\Projekt OS\Debug\Obj\kernel.pbi.dep
+C:\Users\Johan\OneDrive\Skrivbord\Projekt OS\Debug\Obj\kernel_admin.pbi.dep
 -o
-kernel.pbi
+kernel_admin.pbi
 -I
 C:\Users\Johan\OneDrive\Skrivbord\Projekt OS
 -I

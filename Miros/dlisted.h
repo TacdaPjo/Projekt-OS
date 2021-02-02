@@ -3,7 +3,7 @@
 
 #include "kernel.h"
 
-extern list *timerList, *waitList, *readyList;
+extern list *timerList, *waitingList, *readyList;
 extern TCB *Running;
 
 list *createList();

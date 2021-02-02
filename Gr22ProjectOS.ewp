@@ -2119,26 +2119,20 @@
             <data />
         </settings>
     </configuration>
-    <group>
-        <name>files</name>
-        <file>
-            <name>$PROJ_DIR$\includes.h</name>
-        </file>
-        <file>
-            <name>$PROJ_DIR$\Systick.h</name>
-        </file>
-    </group>
     <file>
-        <name>$PROJ_DIR$\cstartup.s</name>
+        <name>$PROJ_DIR$\context_switching_functions_march_2019.s</name>
     </file>
     <file>
-        <name>$PROJ_DIR$\dlisted.c</name>
+        <name>$PROJ_DIR$\core_cm3.h</name>
+    </file>
+    <file>
+        <name>$PROJ_DIR$\cstartup.s</name>
     </file>
     <file>
         <name>$PROJ_DIR$\exceptions.c</name>
     </file>
     <file>
-        <name>$PROJ_DIR$\kernel.c</name>
+        <name>$PROJ_DIR$\kernel.h</name>
     </file>
     <file>
         <name>$PROJ_DIR$\main.c</name>
@@ -2148,8 +2142,5 @@
     </file>
     <file>
         <name>$PROJ_DIR$\system_sam3x.c</name>
-    </file>
-    <file>
-        <name>$PROJ_DIR$\timer.c</name>
     </file>
 </project>
