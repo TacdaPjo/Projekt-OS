@@ -214,7 +214,7 @@ void main()
     { /* no use going further */
     }
   }
-
+  update_meminfo();
   run();
 
   while (1)

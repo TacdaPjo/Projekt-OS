@@ -37,7 +37,7 @@ define symbol __ICFEDIT_intvec_start__      = __region_RAM_start__ ;
 
 /*-Sizes-*/
 define symbol __size_cstack__               = 0x800 ;
-define symbol __size_heap__                 = 0x2000 ;
+define symbol __size_heap__                 = 0x4000 ;
 
 define memory mem with size                 = 4G ;
 define region RAM_region                    = mem:[from __region_RAM_start__ to __region_RAM_end__];

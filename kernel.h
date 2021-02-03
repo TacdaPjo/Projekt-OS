@@ -28,8 +28,6 @@
 #define SENDER +1
 #define RECEIVER -1
 
-//extern void TimerInt(void);
-
 typedef int exception;
 typedef int bool;
 typedef unsigned int uint;
@@ -133,9 +131,13 @@ extern void switch_to_stack_of_next_task(void);
 extern void LoadContext_In_Terminate(void);
 /* To be used on the last line of the C function terminate() */
 
+#pragma region includes
 #include "data.h"
 #include "kernel_admin.c"
 #include "timing.c"
 #include "tasks.c"
+#include "mallocstats.h"
+#include "memory_manager.c"
+#pragma endregion includes
 
 #endif // !KERNEL_H

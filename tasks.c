@@ -6,6 +6,8 @@ exception addTaskToList(list *taskList, TCB *task);
 int compareListObjs(TaskNode *obj1, TaskNode *obj2);
 TaskList *createTaskList(void);
 exception removeTask(TaskNode *task, TaskList *list);
+TaskNode *firstTask(TaskList *list);
+TaskNode *lastTask(TaskList *list);
 #pragma endregion three
 
 TaskList *createTaskList(void)
@@ -94,19 +96,15 @@ int compareListObjs(TaskNode *obj1, TaskNode *obj2)
     }
 }
 
-TaskNode *createListObj(TCB *task)
+TaskNode *createListObj(TCB *tcb)
 {
     TaskNode *list_Obj;
 
     if ((list_Obj = allocSafe(sizeof(TaskNode))) == NULL)
         return NULL;
 
-    /* task->Deadline = ticks() + d;
-    task->PC = task;
-    task->SP = &task->StackSeg[STACK_SIZE - 1]; */
-
     list_Obj->nTCnt = ticks();
-    list_Obj->pTask = task;
+    list_Obj->pTask = tcb;
 
     return list_Obj;
 }
@@ -145,22 +143,15 @@ exception removeTask(TaskNode *task, TaskList *list)
         memoryFree(task);
         return OK;
     }
-        return FAIL;
+    return FAIL;
 }
 
-/* list* allocTask(void (*body)(), uint d) {
-    list* task = NULL;
-    TCB*      tcb  = NULL;
+TaskNode *firstTask(TaskList *list)
+{
+    return list->pHead->pNext;
+}
 
-    if (task = allocSafe(sizeof *task), !task)  { return NULL; }
-    if (tcb  = allocSafe(sizeof *tcb),  !tcb)   { safeData_free(task); return NULL; }
-
-    tcb->DeadLine   = ticks() + d;
-    tcb->PC         = body;
-    tcb->SP         = &tcb->StackSeg[STACK_SIZE - 1];
-
-    task->nTCnt     = ticks();
-    task->pTask     = tcb;
-
-    return task;
-} */
+TaskNode *lastTask(TaskList *list)
+{
+    return list->pHead->pPrevious;
+}

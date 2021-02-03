@@ -89,7 +89,8 @@ exception init_kernel(void)
 */
 void idleTask()
 {
-  while (1);
+  while (1)
+    ;
 }
 
 exception create_task(void (*taskBody)(), uint d)
@@ -114,7 +115,6 @@ exception create_task(void (*taskBody)(), uint d)
     addTaskToList(ReadyList, task);
     return SUCCESS;
   }
-  
 
   else
   {
@@ -137,17 +137,13 @@ void terminate(void)
 
   isr_off();
 
-  removeTask(ReadyList->pHead,ReadyList);
-
+  removeTask(ReadyList->pHead, ReadyList);
 
   NextTask = ReadyList->pHead->pTask;
-  
-  
+
   switch_to_stack_of_next_task();
 
-  
   LoadContext_In_Terminate();
-
 }
 
 void run(void)

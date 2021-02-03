@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project>
     <fileVersion>4</fileVersion>
-    <fileChecksum>4142443650</fileChecksum>
+    <fileChecksum>623637467</fileChecksum>
     <configuration>
         <name>Debug</name>
         <outputs>
@@ -75,6 +75,8 @@
             <file>$TOOLKIT_DIR$\inc\c\iccarm_builtin.h</file>
             <file>$TOOLKIT_DIR$\lib\shb_l.a</file>
             <file>$PROJ_DIR$\Debug\Obj\exceptions.o</file>
+            <file>$PROJ_DIR$\mallocstats.h</file>
+            <file>$PROJ_DIR$\memory_manager.c</file>
         </outputs>
         <file>
             <name>[ROOT_NODE]</name>
@@ -136,7 +138,7 @@
             <inputs>
                 <tool>
                     <name>ICCARM</name>
-                    <file> 38 65 23 66 49 9 14 5 44 52 67 58 34 2 55 46 62 60 56 41 51 27 57 54</file>
+                    <file> 38 65 23 66 49 9 14 5 44 52 67 58 34 2 55 46 62 60 56 41 51 27 57 54 70 71</file>
                 </tool>
             </inputs>
         </file>
