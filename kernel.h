@@ -28,8 +28,7 @@
 #define SENDER +1
 #define RECEIVER -1
 
-
-extern void TimerInt(void);
+//extern void TimerInt(void);
 
 typedef int exception;
 typedef int bool;

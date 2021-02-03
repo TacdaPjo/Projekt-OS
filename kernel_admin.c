@@ -1,6 +1,5 @@
 #include "data.h"
 
-
 extern TCB idle_task;
 
 #pragma region once
@@ -8,10 +7,10 @@ void idleTask();
 void TimerInt();
 exception init_kernel(void);
 exception create_task(void (*body)(), uint d);
-TaskList *create_task_list(void);
-exception Add_task_tolist(TaskList *taskList, TCB *task);
+TaskList *createTaskList(void);
+exception addTaskToList(TaskList *taskList, TCB *task);
 void *allocSafe(size_t size);
-void safeData_free(void *safeData);
+void memoryFree(void *safeData);
 void terminate(void);
 void run(void);
 #pragma endregion once
@@ -48,7 +47,7 @@ void *allocSafe(size_t size)
 * @param SizeData
 * @return Return
 */
-void safeData_free(void *safeData)
+void memoryFree(void *safeData)
 {
   if (safeData)
   {
@@ -66,21 +65,19 @@ exception init_kernel(void)
   set_ticks(0);
 
   // Create necessary data structures
-  if ((ReadyList = create_task_list()) == NULL)
+  if ((ReadyList = createTaskList()) == NULL)
     return FAIL;
-  if ((WaitingList = create_task_list()) == NULL)
+  if ((WaitingList = createTaskList()) == NULL)
     return FAIL;
-  if ((TimerList = create_task_list()) == NULL)
+  if ((TimerList = createTaskList()) == NULL)
     return FAIL;
 
   //Set the kernel in INIT mode
   kernelMode = INIT;
 
   //Create an Idle task
-  if (!create_task(&idleTask, 5000))
+  if (!create_task(&idleTask, UINT_MAX))
     return FAIL;
-
-
 
   return SUCCESS;
 }
@@ -92,10 +89,7 @@ exception init_kernel(void)
 */
 void idleTask()
 {
-  while (1)
-  {
-    TimerInt();
-  }
+  while (1);
 }
 
 exception create_task(void (*taskBody)(), uint d)
@@ -117,20 +111,20 @@ exception create_task(void (*taskBody)(), uint d)
 
   if (kernelMode == INIT)
   {
-    Add_task_tolist(ReadyList, task);
+    addTaskToList(ReadyList, task);
     return SUCCESS;
   }
-  // after the mandatory initialization you can implement the rest of the suggested pseudocode
+  
 
   else
   {
     isr_off();
 
-    PreviousTask = (TCB *)ReadyList->pTail;
+    PreviousTask = ReadyList->pHead->pTask;
 
-    Add_task_tolist(ReadyList, task);
+    addTaskToList(ReadyList, task);
 
-    NextTask = (TCB *)ReadyList->pHead;
+    NextTask = ReadyList->pHead->pTask;
 
     SwitchContext();
   }
@@ -141,24 +135,19 @@ exception create_task(void (*taskBody)(), uint d)
 void terminate(void)
 {
 
-   isr_off();
+  isr_off();
 
-  // leavingObj = extract(ReadyList->pHead);
-    deleteTask(removeTask(ReadyList->pHead));
-  /* extract() detaches the head node from the ReadyList and
-  * returns the list object of the running task */
-   NextTask = (TCB *) ReadyList->pHead->pTask;
-   switch_to_stack_of_next_stack();
+  removeTask(ReadyList->pHead,ReadyList);
 
-  // free(leavingObj->pTask);
-  // free(leavingObj);
-   LoadContext_In_Terminate();
-  /* supplied to you in the assembly file
- * does not save any of the registers. Specifically, does not save the
- * process stack pointer (psp), but
- * simply restores registers from saved values from the TCB of NextTask
- * note: the stack pointer is restored from NextTask->SP
- */
+
+  NextTask = ReadyList->pHead->pTask;
+  
+  
+  switch_to_stack_of_next_task();
+
+  
+  LoadContext_In_Terminate();
+
 }
 
 void run(void)
@@ -169,7 +158,7 @@ void run(void)
 
   kernelMode = RUNNING;
 
-  NextTask = (TCB*)ReadyList->pHead->pTask;
+  NextTask = ReadyList->pHead->pTask;
   //NextTask = ReadyList->pHead->pTask;
 
   LoadContext_In_Run();

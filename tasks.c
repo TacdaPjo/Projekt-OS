@@ -1,33 +1,23 @@
 #include "data.h"
 
 #pragma region three
-TaskNode *create_listobj(TCB *task);
-exception Add_task_tolist(list *taskList, TCB *task);
-int compare_listobj(TaskNode *obj1, TaskNode *obj2);
-TaskList *create_task_list(void);
-void deleteTask(TaskNode* task);
-TaskNode* removeTask(TaskNode* task);
+TaskNode *createListObj(TCB *task);
+exception addTaskToList(list *taskList, TCB *task);
+int compareListObjs(TaskNode *obj1, TaskNode *obj2);
+TaskList *createTaskList(void);
+exception removeTask(TaskNode *task, TaskList *list);
 #pragma endregion three
 
-TaskList *create_task_list(void)
+TaskList *createTaskList(void)
 {
     TaskList *task_list = allocSafe(sizeof(TaskList));
     if (task_list == NULL)
         return NULL;
 
-    /*  TaskNode *object = allocSafe(sizeof(TaskNode));
-    if (object == NULL)
-        return NULL;
-
-    object->pNext = object;
-    object->pPrevious = object;
-    task_list->pHead = object;
-    task_list->pTail = object;
-  */
     return task_list;
 }
 
-exception Add_task_tolist(TaskList *taskList, TCB *task)
+exception addTaskToList(TaskList *taskList, TCB *task)
 {
     TaskNode *list_obj;
     TaskNode *temp;
@@ -35,7 +25,7 @@ exception Add_task_tolist(TaskList *taskList, TCB *task)
     if (taskList->pHead == NULL)
     {
 
-        list_obj = create_listobj(task);
+        list_obj = createListObj(task);
 
         if (list_obj == NULL)
             return FAIL;
@@ -45,7 +35,7 @@ exception Add_task_tolist(TaskList *taskList, TCB *task)
     }
     else
     {
-        list_obj = create_listobj(task);
+        list_obj = createListObj(task);
         if (list_obj == NULL)
             return FAIL;
 
@@ -53,7 +43,7 @@ exception Add_task_tolist(TaskList *taskList, TCB *task)
 
         while (1)
         {
-            if (temp == taskList->pTail && !compare_listobj(temp, list_obj))
+            if (temp == taskList->pTail && !compareListObjs(temp, list_obj))
             {
                 temp->pNext = list_obj;
                 taskList->pTail = list_obj;
@@ -61,7 +51,7 @@ exception Add_task_tolist(TaskList *taskList, TCB *task)
                 return OK;
             }
 
-            else if (compare_listobj(temp, list_obj))
+            else if (compareListObjs(temp, list_obj))
             {
                 //if list_obj has a tighter deadline
 
@@ -90,21 +80,21 @@ exception Add_task_tolist(TaskList *taskList, TCB *task)
     return SUCCESS;
 }
 
-int compare_listobj(TaskNode *obj1, TaskNode *obj2)
+int compareListObjs(TaskNode *obj1, TaskNode *obj2)
 {
 
-    if((obj1->pTask->Deadline) > (obj2->pTask->Deadline))
+    if ((obj1->pTask->Deadline) > (obj2->pTask->Deadline))
     {
-    return OK;
+        return OK;
     }
 
     else
     {
-    return FAIL;
+        return FAIL;
     }
 }
 
-TaskNode *create_listobj(TCB *task)
+TaskNode *createListObj(TCB *task)
 {
     TaskNode *list_Obj;
 
@@ -121,23 +111,42 @@ TaskNode *create_listobj(TCB *task)
     return list_Obj;
 }
 
-void deleteTask(TaskNode* task)
+exception removeTask(TaskNode *task, TaskList *list)
 {
-    safeData_free(task->pTask);
-    safeData_free(task);
-}
 
-TaskNode* removeTask(TaskNode* task)
-{
-    if (task) {
-        TaskNode* p   = task->pPrevious;
-        TaskNode* n   = task->pNext;
-        p->pNext            = n;
-        n->pPrevious        = p;
+    if (task)
+    {
+        if (task == list->pHead && task == list->pTail)
+        {
+            list->pHead = NULL;
+            list->pTail = NULL;
+        }
+
+        else if (task == list->pTail)
+        {
+            list->pTail = task->pPrevious;
+            task->pPrevious = NULL;
+        }
+
+        else if (task == list->pHead)
+        {
+            list->pHead = task->pNext;
+            task->pNext = NULL;
+        }
+        else
+        {
+            TaskNode *p = task->pPrevious;
+            TaskNode *n = task->pNext;
+            p->pNext = n;
+            n->pPrevious = p;
+        }
+
+        memoryFree(task->pTask);
+        memoryFree(task);
+        return OK;
     }
-    return task;
+        return FAIL;
 }
-
 
 /* list* allocTask(void (*body)(), uint d) {
     list* task = NULL;

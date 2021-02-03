@@ -8,11 +8,9 @@ uint deadline(void);
 void set_deadline(uint nNew);
 #pragma endregion twice
 
-
 #pragma region var
 
 #pragma endregion var
-
 
 void set_ticks(uint nTicks)
 {
@@ -26,9 +24,6 @@ uint ticks(void)
 
 exception wait(uint nTicks)
 {
-    
-
-
 }
 
 uint deadline(void)
