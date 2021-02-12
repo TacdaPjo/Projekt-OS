@@ -5,266 +5,88 @@
     <configuration>
         <name>Debug</name>
         <outputs>
-            <file>$PROJ_DIR$\core_cmFunc.h</file>
-            <file>$TOOLKIT_DIR$\inc\c\limits.h</file>
-            <file>$PROJ_DIR$\kernel.c</file>
-            <file>$PROJ_DIR$\Debug\Obj\startup_sam3x.__cstat.et</file>
-            <file>$TOOLKIT_DIR$\inc\c\string.h</file>
-            <file>$PROJ_DIR$\data.h</file>
-            <file>$TOOLKIT_DIR$\inc\c\DLib_Defaults.h</file>
-            <file>$PROJ_DIR$\Miros\miros.c</file>
-            <file>$PROJ_DIR$\Debug\Obj\kernel_admin.xcl</file>
-            <file>$PROJ_DIR$\Debug\Obj\dlisted.__cstat.et</file>
-            <file>$PROJ_DIR$\Debug\Obj\system_sam3x.xcl</file>
-            <file>$PROJ_DIR$\Debug\Obj\main.xcl</file>
-            <file>$TOOLKIT_DIR$\inc\c\stdint.h</file>
-            <file>$PROJ_DIR$\mallocstats.h</file>
-            <file>$PROJ_DIR$\inter-process.c</file>
             <file>$PROJ_DIR$\Debug\Obj\Gr22ProjectOS.pbd</file>
+            <file>$PROJ_DIR$\cstartup.s</file>
+            <file>$PROJ_DIR$\Debug\Obj\system_sam3x.xcl</file>
             <file>$TOOLKIT_DIR$\inc\c\iccarm_builtin.h</file>
             <file>$PROJ_DIR$\exceptions.h</file>
             <file>$PROJ_DIR$\core_cmInstr.h</file>
-            <file>$TOOLKIT_DIR$\lib\dl7M_tln.a</file>
-            <file>$PROJ_DIR$\Debug\Obj\miros.__cstat.et</file>
-            <file>$PROJ_DIR$\Debug\Obj\timer.__cstat.et</file>
-            <file>$TOOLKIT_DIR$\inc\c\yvals.h</file>
-            <file>$PROJ_DIR$\timing.c</file>
-            <file>$TOOLKIT_DIR$\inc\c\cmsis_iar.h</file>
-            <file>$TOOLKIT_DIR$\inc\c\DLib_Product_string.h</file>
-            <file>$PROJ_DIR$\at91sam3x8.h</file>
-            <file>$TOOLKIT_DIR$\inc\c\DLib_Config_Normal.h</file>
-            <file>$PROJ_DIR$\tasks.c</file>
-            <file>$PROJ_DIR$\Debug\Obj\startup_sam3x.o</file>
-            <file>$PROJ_DIR$\system_sam3x.h</file>
-            <file>$PROJ_DIR$\Debug\Obj\context_switching_functions_march_2019.o</file>
-            <file>$TOOLKIT_DIR$\inc\c\ycheck.h</file>
-            <file>$TOOLKIT_DIR$\inc\c\ysizet.h</file>
-            <file>$PROJ_DIR$\timer.c</file>
-            <file>$PROJ_DIR$\Debug\Obj\exceptions.o</file>
-            <file>$PROJ_DIR$\Debug\Obj\miros.xcl</file>
-            <file>$PROJ_DIR$\Debug\Obj\dlisted.xcl</file>
-            <file>$PROJ_DIR$\Debug\Obj\exceptions.__cstat.et</file>
-            <file>$PROJ_DIR$\Debug\Obj\timer.o</file>
-            <file>$PROJ_DIR$\dlisted.h</file>
-            <file>$PROJ_DIR$\system_sam3x.c</file>
-            <file>$PROJ_DIR$\Debug\Obj\main.__cstat.et</file>
-            <file>$PROJ_DIR$\dlisted.c</file>
-            <file>$PROJ_DIR$\startup_sam3x.c</file>
-            <file>$PROJ_DIR$\kernel_admin.c</file>
-            <file>$PROJ_DIR$\Debug\Obj\system_sam3x.o</file>
-            <file>$PROJ_DIR$\Debug\Obj\timer.xcl</file>
-            <file>$PROJ_DIR$\Debug\Obj\startup_sam3x.xcl</file>
-            <file>$PROJ_DIR$\Debug\Obj\system_sam3x.__cstat.et</file>
-            <file>$PROJ_DIR$\Debug\Obj\main.o</file>
-            <file>$PROJ_DIR$\Debug\Obj\dlisted.o</file>
-            <file>$TOOLKIT_DIR$\inc\c\DLib_Product.h</file>
-            <file>$PROJ_DIR$\Debug\Obj\kernel.xcl</file>
-            <file>$PROJ_DIR$\Debug\Exe\Gr22ProjectOS.out</file>
-            <file>$PROJ_DIR$\Debug\Obj\exceptions.xcl</file>
-            <file>$TOOLKIT_DIR$\inc\c\stdlib.h</file>
-            <file>$PROJ_DIR$\miros.c</file>
-            <file>$PROJ_DIR$\main.c</file>
-            <file>$PROJ_DIR$\Debug\Obj\cstartup.o</file>
-            <file>$TOOLKIT_DIR$\inc\c\DLib_Product_stdlib.h</file>
-            <file>$PROJ_DIR$\Debug\Obj\kernel.__cstat.et</file>
+            <file>$PROJ_DIR$\kernel.h</file>
+            <file>$PROJ_DIR$\Debug\Obj\kernel_admin.xcl</file>
+            <file>$PROJ_DIR$\kernel.c</file>
+            <file>$TOOLKIT_DIR$\inc\c\stdint.h</file>
+            <file>$PROJ_DIR$\mallocstats.h</file>
             <file>$PROJ_DIR$\context_switching_functions_march_2019.s</file>
             <file>$PROJ_DIR$\core_cm3.h</file>
-            <file>$PROJ_DIR$\cstartup.s</file>
+            <file>$PROJ_DIR$\core_cmFunc.h</file>
+            <file>$PROJ_DIR$\Debug\Obj\startup_sam3x.__cstat.et</file>
+            <file>$PROJ_DIR$\startup_sam3x.c</file>
+            <file>$TOOLKIT_DIR$\inc\c\limits.h</file>
+            <file>$TOOLKIT_DIR$\inc\c\string.h</file>
+            <file>$PROJ_DIR$\system_sam3x.c</file>
             <file>$PROJ_DIR$\exceptions.c</file>
-            <file>$PROJ_DIR$\kernel.h</file>
+            <file>$PROJ_DIR$\data.h</file>
+            <file>$TOOLKIT_DIR$\inc\c\DLib_Defaults.h</file>
+            <file>$PROJ_DIR$\main.c</file>
+            <file>$PROJ_DIR$\Miros\miros.c</file>
+            <file>$PROJ_DIR$\Debug\Obj\dlisted.__cstat.et</file>
+            <file>$PROJ_DIR$\Debug\Obj\main.xcl</file>
+            <file>$PROJ_DIR$\inter-process.c</file>
+            <file>$TOOLKIT_DIR$\inc\c\ysizet.h</file>
+            <file>$TOOLKIT_DIR$\inc\c\cmsis_iar.h</file>
+            <file>$PROJ_DIR$\Debug\Obj\miros.__cstat.et</file>
+            <file>$PROJ_DIR$\Debug\Obj\miros.xcl</file>
+            <file>$PROJ_DIR$\Debug\Obj\exceptions.__cstat.et</file>
+            <file>$PROJ_DIR$\Debug\Obj\timer.o</file>
+            <file>$PROJ_DIR$\kernel_admin.c</file>
+            <file>$TOOLKIT_DIR$\inc\c\yvals.h</file>
+            <file>$PROJ_DIR$\Debug\Obj\startup_sam3x.xcl</file>
+            <file>$PROJ_DIR$\timer.c</file>
+            <file>$PROJ_DIR$\Debug\Obj\timer.__cstat.et</file>
+            <file>$PROJ_DIR$\dlisted.h</file>
+            <file>$PROJ_DIR$\Debug\Obj\main.o</file>
+            <file>$TOOLKIT_DIR$\inc\c\DLib_Config_Normal.h</file>
+            <file>$PROJ_DIR$\dlisted.c</file>
+            <file>$PROJ_DIR$\timing.c</file>
+            <file>$PROJ_DIR$\tasks.c</file>
+            <file>$PROJ_DIR$\system_sam3x.h</file>
+            <file>$PROJ_DIR$\Debug\Obj\system_sam3x.o</file>
+            <file>$PROJ_DIR$\Debug\Obj\context_switching_functions_march_2019.o</file>
+            <file>$PROJ_DIR$\Debug\Obj\dlisted.o</file>
+            <file>$TOOLKIT_DIR$\inc\c\DLib_Product.h</file>
+            <file>$PROJ_DIR$\at91sam3x8.h</file>
+            <file>$TOOLKIT_DIR$\lib\dl7M_tln.a</file>
+            <file>$PROJ_DIR$\Debug\Obj\system_sam3x.__cstat.et</file>
+            <file>$PROJ_DIR$\Debug\Obj\startup_sam3x.o</file>
+            <file>$PROJ_DIR$\Debug\Obj\dlisted.xcl</file>
+            <file>$PROJ_DIR$\Debug\Obj\exceptions.o</file>
+            <file>$PROJ_DIR$\Debug\Obj\timer.xcl</file>
+            <file>$PROJ_DIR$\Debug\Obj\main.__cstat.et</file>
+            <file>$TOOLKIT_DIR$\inc\c\DLib_Product_string.h</file>
+            <file>$TOOLKIT_DIR$\inc\c\ycheck.h</file>
+            <file>$PROJ_DIR$\miros.c</file>
             <file>$TOOLKIT_DIR$\lib\shb_l.a</file>
-            <file>$TOOLKIT_DIR$\lib\rt7M_tl.a</file>
-            <file>$TOOLKIT_DIR$\lib\m7M_tl.a</file>
-            <file>$PROJ_DIR$\memory_manager.c</file>
             <file>$PROJ_DIR$\sam3x8-sram_BigHeap.icf</file>
-            <file>$PROJ_DIR$\testsreq\testmsg.c</file>
+            <file>$PROJ_DIR$\Debug\Exe\Gr22ProjectOS.out</file>
+            <file>$PROJ_DIR$\Debug\Obj\kernel.__cstat.et</file>
+            <file>$PROJ_DIR$\Debug\Obj\kernel.xcl</file>
             <file>$PROJ_DIR$\Debug\List\Gr22ProjectOS.map</file>
+            <file>$TOOLKIT_DIR$\lib\m7M_tl.a</file>
+            <file>$TOOLKIT_DIR$\inc\c\stdlib.h</file>
+            <file>$PROJ_DIR$\memory_manager.c</file>
+            <file>$TOOLKIT_DIR$\inc\c\DLib_Product_stdlib.h</file>
+            <file>$PROJ_DIR$\testsreq\testmsg.c</file>
+            <file>$TOOLKIT_DIR$\lib\rt7M_tl.a</file>
+            <file>$PROJ_DIR$\Debug\Obj\exceptions.xcl</file>
+            <file>$PROJ_DIR$\Debug\Obj\cstartup.o</file>
+            <file>$PROJ_DIR$\testsreq\test.c</file>
         </outputs>
         <file>
             <name>[ROOT_NODE]</name>
             <outputs>
                 <tool>
                     <name>ILINK</name>
-                    <file> 54 73</file>
-                </tool>
-            </outputs>
-        </file>
-        <file>
-            <name>$PROJ_DIR$\kernel.c</name>
-            <outputs>
-                <tool>
-                    <name>BICOMP</name>
-                    <file> 53</file>
-                </tool>
-                <tool>
-                    <name>__cstat</name>
-                    <file> 61</file>
-                </tool>
-            </outputs>
-        </file>
-        <file>
-            <name>$PROJ_DIR$\Miros\miros.c</name>
-            <outputs>
-                <tool>
-                    <name>BICOMP</name>
-                    <file> 36</file>
-                </tool>
-            </outputs>
-        </file>
-        <file>
-            <name>$PROJ_DIR$\timer.c</name>
-            <outputs>
-                <tool>
-                    <name>ICCARM</name>
-                    <file> 39</file>
-                </tool>
-                <tool>
-                    <name>BICOMP</name>
-                    <file> 47</file>
-                </tool>
-                <tool>
-                    <name>__cstat</name>
-                    <file> 21</file>
-                </tool>
-            </outputs>
-            <inputs>
-                <tool>
-                    <name>ICCARM</name>
-                    <file> 66 56 32 22 6 27 52 33 60</file>
-                </tool>
-            </inputs>
-        </file>
-        <file>
-            <name>$PROJ_DIR$\system_sam3x.c</name>
-            <outputs>
-                <tool>
-                    <name>ICCARM</name>
-                    <file> 46</file>
-                </tool>
-                <tool>
-                    <name>BICOMP</name>
-                    <file> 10</file>
-                </tool>
-                <tool>
-                    <name>__cstat</name>
-                    <file> 49</file>
-                </tool>
-            </outputs>
-            <inputs>
-                <tool>
-                    <name>ICCARM</name>
-                    <file> 26 30 12 32 22 6 27 52 63 18 24 16 0</file>
-                </tool>
-            </inputs>
-        </file>
-        <file>
-            <name>$PROJ_DIR$\dlisted.c</name>
-            <outputs>
-                <tool>
-                    <name>ICCARM</name>
-                    <file> 51</file>
-                </tool>
-                <tool>
-                    <name>BICOMP</name>
-                    <file> 37</file>
-                </tool>
-                <tool>
-                    <name>__cstat</name>
-                    <file> 9</file>
-                </tool>
-            </outputs>
-            <inputs>
-                <tool>
-                    <name>ICCARM</name>
-                    <file> 66 56 32 22 6 27 52 33 60 4 25 1 45 40</file>
-                </tool>
-            </inputs>
-        </file>
-        <file>
-            <name>$PROJ_DIR$\startup_sam3x.c</name>
-            <outputs>
-                <tool>
-                    <name>ICCARM</name>
-                    <file> 29</file>
-                </tool>
-                <tool>
-                    <name>BICOMP</name>
-                    <file> 48</file>
-                </tool>
-                <tool>
-                    <name>__cstat</name>
-                    <file> 3</file>
-                </tool>
-            </outputs>
-            <inputs>
-                <tool>
-                    <name>ICCARM</name>
-                    <file> 26 17 63 12 32 22 6 27 52 18 24 16 0</file>
-                </tool>
-            </inputs>
-        </file>
-        <file>
-            <name>$PROJ_DIR$\kernel_admin.c</name>
-            <outputs>
-                <tool>
-                    <name>BICOMP</name>
-                    <file> 8</file>
-                </tool>
-            </outputs>
-        </file>
-        <file>
-            <name>$PROJ_DIR$\Debug\Exe\Gr22ProjectOS.out</name>
-            <outputs>
-                <tool>
-                    <name>ILINK</name>
-                    <file> 73</file>
-                </tool>
-            </outputs>
-            <inputs>
-                <tool>
-                    <name>ILINK</name>
-                    <file> 71 31 59 35 50 29 46 67 68 69 19</file>
-                </tool>
-            </inputs>
-        </file>
-        <file>
-            <name>$PROJ_DIR$\miros.c</name>
-            <outputs>
-                <tool>
-                    <name>BICOMP</name>
-                    <file> 36</file>
-                </tool>
-                <tool>
-                    <name>__cstat</name>
-                    <file> 20</file>
-                </tool>
-            </outputs>
-        </file>
-        <file>
-            <name>$PROJ_DIR$\main.c</name>
-            <outputs>
-                <tool>
-                    <name>BICOMP</name>
-                    <file> 11</file>
-                </tool>
-                <tool>
-                    <name>__cstat</name>
-                    <file> 42</file>
-                </tool>
-            </outputs>
-            <inputs>
-                <tool>
-                    <name>ICCARM</name>
-                    <file> 30 12 32 22 6 27 52 63 18 24 16 0 26 66 56 33 60 4 25 1 5 45 23 28 14 70 13 72</file>
-                </tool>
-            </inputs>
-        </file>
-        <file>
-            <name>$PROJ_DIR$\context_switching_functions_march_2019.s</name>
-            <outputs>
-                <tool>
-                    <name>AARM</name>
-                    <file> 31</file>
+                    <file> 62 65</file>
                 </tool>
             </outputs>
         </file>
@@ -273,16 +95,148 @@
             <outputs>
                 <tool>
                     <name>AARM</name>
-                    <file> 59</file>
+                    <file> 73</file>
                 </tool>
             </outputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\kernel.c</name>
+            <outputs>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 64</file>
+                </tool>
+                <tool>
+                    <name>__cstat</name>
+                    <file> 63</file>
+                </tool>
+            </outputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\context_switching_functions_march_2019.s</name>
+            <outputs>
+                <tool>
+                    <name>AARM</name>
+                    <file> 46</file>
+                </tool>
+            </outputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\startup_sam3x.c</name>
+            <outputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 52</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 35</file>
+                </tool>
+                <tool>
+                    <name>__cstat</name>
+                    <file> 14</file>
+                </tool>
+            </outputs>
+            <inputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 49 4 12 9 58 34 21 40 48 5 28 3 13</file>
+                </tool>
+            </inputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\system_sam3x.c</name>
+            <outputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 45</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 2</file>
+                </tool>
+                <tool>
+                    <name>__cstat</name>
+                    <file> 51</file>
+                </tool>
+            </outputs>
+            <inputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 49 44 9 58 34 21 40 48 12 5 28 3 13</file>
+                </tool>
+            </inputs>
         </file>
         <file>
             <name>$PROJ_DIR$\exceptions.c</name>
             <outputs>
                 <tool>
                     <name>ICCARM</name>
-                    <file> 35</file>
+                    <file> 54</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 72</file>
+                </tool>
+                <tool>
+                    <name>__cstat</name>
+                    <file> 31</file>
+                </tool>
+            </outputs>
+            <inputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 4</file>
+                </tool>
+            </inputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\main.c</name>
+            <outputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 39</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 25</file>
+                </tool>
+                <tool>
+                    <name>__cstat</name>
+                    <file> 56</file>
+                </tool>
+            </outputs>
+            <inputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 44 9 58 34 21 40 48 12 5 28 3 13 49 6 67 27 69 17 57 16 20 33 42 43 26 68 10 70</file>
+                </tool>
+            </inputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\Miros\miros.c</name>
+            <outputs>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 30</file>
+                </tool>
+            </outputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\kernel_admin.c</name>
+            <outputs>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 7</file>
+                </tool>
+            </outputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\timer.c</name>
+            <outputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 32</file>
                 </tool>
                 <tool>
                     <name>BICOMP</name>
@@ -290,13 +244,64 @@
                 </tool>
                 <tool>
                     <name>__cstat</name>
-                    <file> 38</file>
+                    <file> 37</file>
                 </tool>
             </outputs>
             <inputs>
                 <tool>
                     <name>ICCARM</name>
-                    <file> 17</file>
+                    <file> 6 67 58 34 21 40 48 27 69</file>
+                </tool>
+            </inputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\dlisted.c</name>
+            <outputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 47</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 53</file>
+                </tool>
+                <tool>
+                    <name>__cstat</name>
+                    <file> 24</file>
+                </tool>
+            </outputs>
+            <inputs>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 6 67 58 34 21 40 48 27 69 17 57 16 33 38</file>
+                </tool>
+            </inputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\miros.c</name>
+            <outputs>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 30</file>
+                </tool>
+                <tool>
+                    <name>__cstat</name>
+                    <file> 29</file>
+                </tool>
+            </outputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\Debug\Exe\Gr22ProjectOS.out</name>
+            <outputs>
+                <tool>
+                    <name>ILINK</name>
+                    <file> 65</file>
+                </tool>
+            </outputs>
+            <inputs>
+                <tool>
+                    <name>ILINK</name>
+                    <file> 61 46 73 54 39 52 45 60 71 66 50</file>
                 </tool>
             </inputs>
         </file>

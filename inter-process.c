@@ -20,13 +20,13 @@ exception isEmpty(mailbox *mBox)
 
 msg *createMsg(void *data, i32 size)
 {
-    msg *m = (msg *)allocSafe(sizeof m);
-    if (m == NULL)
+    msg *msg = allocSafe(sizeof msg);
+    if (msg == NULL)
     {
         return NULL;
     }
-    m->pData = data;
-    return m;
+    msg->pData = data;
+    return msg;
 }
 
 // nof_msg: Maximum number of Messages the Mailbox can hold.
@@ -80,10 +80,26 @@ exception removes_whole_mailbox(mailbox *mBox)
     }
 }
 
-msg *msg_enqueue(mailbox *mBox)
+//Enqueue from the tail
+exception msg_enqueue(mailbox *mBox, msg *msg)
 {
+
+    if (msg == NULL || mBox == NULL)
+        return NULL;
+
+    if (mBox->pTail == NULL)
+    {
+        mBox->pHead = mBox->pTail = msg;
+    }
+
+    mBox->pTail->pNext = msg;
+    msg->pPrevious = mBox->pHead;
+    mBox->pTail = msg;
+
+    return OK;
 }
 
+//dequeue from the head
 msg *msg_dequeue(mailbox *mBox)
 {
     if (mBox == NULL || mBox->pHead == NULL)
@@ -112,25 +128,62 @@ exception send_wait(mailbox *mBox, void *pData)
         return msgstatus = OK;
     if (msgstatus)
     {
-        msg *temp = mBox->pHead;
-        if(memcpy(temp->pData, pData, temp->pBlock->pMessage)
+        if (memcpy(mBox->pHead->pData, pData, mBox->nDataSize))
+            isr_on();
+
+        msg *msg = msg_dequeue(mBox);
+
+        PreviousTask = NextTask;
+
+        moveListObj(WaitingList, ReadyList, msg->pBlock);
+
+        NextTask = ReadyList->pHead->pTask;
     }
+
     else
     {
+        msg *msg = allocSafe(sizeof msg);
+        msg->pData = pData;
+        msg->pBlock = ReadyList->pHead;
+        msg->Status = SENDER;
+
+        msg_enqueue(mBox, msg);
+
+        PreviousTask = ReadyList->pHead->pTask;
+        moveListObj(ReadyList, WaitingList, msg->pBlock);
+        NextTask = ReadyList->pHead->pTask;
     }
+
     isr_on();
+    SwitchContext();
+
+    if (deadlineReached(NextTask))
+    {
+        isr_off();
+
+        msg_dequeue(mBox);
+
+        isr_on();
+
+        return DEADLINE_REACHED;
+    }
     return OK;
 }
 
 exception receive_wait(mailbox *mBox, void *Data)
 {
+    exception status = OK;
+    return status;
 }
 
 exception send_no_wait(mailbox *mBox, void *Data)
 {
+    exception status = OK;
+    return status;
 }
 
 exception receive_no_wait(mailbox *mBox, void *Data)
 {
-    return OK;
+    exception status = OK;
+    return status;
 }

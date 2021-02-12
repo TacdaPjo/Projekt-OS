@@ -29,3 +29,14 @@ uint deadline(void)
 void set_deadline(uint nNew)
 {
 }
+
+
+uint deadlineReached(TCB* task)
+{
+
+    if(task->Deadline <= tickCounter)
+    return OK;
+    else
+    return FAIL;
+    
+}

@@ -946,7 +946,7 @@
                     <item>WaitingList</item>
                     <item>TimerList</item>
                     <item>ReadyList</item>
-                    <item></item>
+                    <item />
                 </expressions>
                 <col-names>
                     <item>Expression</item>
@@ -1095,7 +1095,7 @@
                 <expressions>
                     <item>PMC-&gt;PMC_SR</item>
                     <item>WaitingList</item>
-                    <item></item>
+                    <item />
                 </expressions>
                 <col-names>
                     <item>Expression</item>
