@@ -3,6 +3,7 @@
     "files.associations": {
         "at91sam3x8.h": "c",
         "*.s": "c",
-        "kernel_admin.c": "cpp"
+        "kernel_admin.c": "cpp",
+        "system_sam3x.h": "c"
     }
 }

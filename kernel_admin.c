@@ -1,5 +1,7 @@
 #include "data.h"
 
+//when memory is full do something so you get no hardfault.
+
 extern TCB idle_task;
 
 #pragma region once
@@ -58,6 +60,20 @@ void memoryFree(void *safeData)
   }
 }
 
+
+//Make this work later on
+exception necDataStruct(list *list)
+{
+   if ((ReadyList = createTaskList()) == NULL)
+    return FAIL;
+  if ((WaitingList = createTaskList()) == NULL)
+    return FAIL;
+  if ((TimerList = createTaskList()) == NULL)
+    return FAIL;
+
+    return OK;
+}
+
 exception init_kernel(void)
 {
 
@@ -72,13 +88,17 @@ exception init_kernel(void)
   if ((TimerList = createTaskList()) == NULL)
     return FAIL;
 
-  //Set the kernel in INIT mode
-  kernelMode = INIT;
+
+
+ 
+  
 
   //Create an Idle task
-  if (!create_task(&idleTask, UINT_MAX))
+  if (!create_task(idleTask, UINT_MAX))
     return FAIL;
 
+  //Set the kernel in INIT mode
+  kernelMode = INIT;
   return SUCCESS;
 }
 

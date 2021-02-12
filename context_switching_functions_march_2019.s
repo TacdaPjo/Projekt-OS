@@ -176,7 +176,7 @@ svc_function_loadContext_for_terminate
         MSR     BASEPRI,  r0    ;  enables all maskable interrupts, including sys tick
         ISB
         CPSIE   I
-        POP     {PC}            ; exit ISR and trigger_hardware_unstack 
+        POP     {PC}            ; exit IR and trigger_hardware_unstack 
         
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 

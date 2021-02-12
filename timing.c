@@ -29,27 +29,3 @@ uint deadline(void)
 void set_deadline(uint nNew)
 {
 }
-
-
-/* exception wait(uint nTicks)
-{
-    first = TRUE;
-    isr_off();
-    SaveContext();
-
-    if (first)
-    {
-        TaskNode* task;
-        first = FALSE;
-        task = removeTask(task,ReadyList);
-        task->nTCnt = ticks() + nTicks;
-        addTaskToList(timerList,task);
-        Running = firstTask(readyList)->pTask;
-        LoadContext();
-    } else {
-        if (Running->DeadLine <= tickCounter) {
-            return DEADLINE_REACHED;
-        }
-    }
-    return OK;
-} */

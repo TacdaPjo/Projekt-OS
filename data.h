@@ -31,7 +31,7 @@ TaskNode *createListObj(TCB *task);
 exception addTaskToList(list *taskList, TCB *task);
 int compareListObjs(TaskNode *obj1, TaskNode *obj2);
 TaskList *createTaskList(void);
-exception removeTask(TaskNode *task, TaskList *list);
+exception removeTask(TaskNode *task,TaskList *list);
 void TimerInt(void);
 void *allocSafe(size_t size);
 void memoryFree(void *Safedata);

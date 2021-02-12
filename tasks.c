@@ -8,6 +8,7 @@ TaskList *createTaskList(void);
 exception removeTask(TaskNode *task, TaskList *list);
 TaskNode *firstTask(TaskList *list);
 TaskNode *lastTask(TaskList *list);
+exception removeMsg(TaskList *list ,TCB *task);
 #pragma endregion three
 
 TaskList *createTaskList(void)
@@ -85,6 +86,7 @@ exception addTaskToList(TaskList *taskList, TCB *task)
 int compareListObjs(TaskNode *obj1, TaskNode *obj2)
 {
 
+    //if((obj1->pTask->Deadline == obj2->pTask->Deadline))
     if ((obj1->pTask->Deadline) > (obj2->pTask->Deadline))
     {
         return OK;
@@ -154,4 +156,49 @@ TaskNode *firstTask(TaskList *list)
 TaskNode *lastTask(TaskList *list)
 {
     return list->pHead->pPrevious;
+}
+
+exception findTask(TaskList *list, TCB *task)
+{
+    listobj *temp = list->pHead;
+    while(temp!=NULL)
+    {
+        if(temp->pTask == task)
+            return OK;
+        if(temp->pNext==NULL)
+            break;
+        temp = temp->pNext;
+    }
+    return FAIL;
+}
+
+exception removeMsg(TaskList *list ,TCB *task)
+{
+
+    if (task)
+    {
+        if (task == list->pHead->pTask && task == list->pTail->pTask)
+        {
+            list->pHead->pTask = NULL;
+            list->pTail->pTask = NULL;
+        }
+
+        else if (task == list->pTail->pTask)
+        {
+            list->pTail->pTask = task;
+            task = NULL;
+        }
+
+        else if (task == list->pHead->pTask)
+        {
+            list->pHead->pTask = task;
+            task = NULL;
+        }
+        
+
+       
+        memoryFree(task);
+        return OK;
+    }
+    return FAIL;
 }

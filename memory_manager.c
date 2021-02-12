@@ -1,3 +1,4 @@
+#include "mallocstats.h"
 
 struct mallinfo meminfo;
 void update_meminfo()

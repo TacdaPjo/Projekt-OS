@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <settings>
     <Stack>
-        <FillEnabled>0</FillEnabled>
+        <FillEnabled>1</FillEnabled>
         <OverflowWarningsEnabled>1</OverflowWarningsEnabled>
         <WarningThreshold>90</WarningThreshold>
         <SpWarningsEnabled>1</SpWarningsEnabled>
@@ -16,11 +16,11 @@
         <ShowSource>1</ShowSource>
     </Trace1>
     <DebugChecksum>
-        <Checksum>156671639</Checksum>
+        <Checksum>3480441898</Checksum>
     </DebugChecksum>
     <Disassembly>
-        <InstrCount>0</InstrCount>
         <MixedMode>1</MixedMode>
+        <InstrCount>0</InstrCount>
     </Disassembly>
     <Exceptions>
         <StopOnUncaught>_ 0</StopOnUncaught>
@@ -70,6 +70,9 @@
         <FreqHi>0</FreqHi>
         <MultiCoreRunAll>1</MultiCoreRunAll>
     </Simulator>
+    <array_types>
+        <Fmt0>uint[100]	3	0</Fmt0>
+    </array_types>
     <watch_formats>
         <Fmt0>{W}42:LR	4	0</Fmt0>
     </watch_formats>

@@ -98,6 +98,8 @@ void run(void);
 mailbox *create_mailbox(uint nMessages, uint nDataSize);
 int no_messages(mailbox *mBox);
 
+exception remove_mailbox(mailbox* mBox);
+
 exception send_wait(mailbox *mBox, void *pData);
 exception receive_wait(mailbox *mBox, void *pData);
 
@@ -136,8 +138,7 @@ extern void LoadContext_In_Terminate(void);
 #include "kernel_admin.c"
 #include "timing.c"
 #include "tasks.c"
-#include "mallocstats.h"
-#include "memory_manager.c"
+#include "inter-process.c"
 #pragma endregion includes
 
 #endif // !KERNEL_H
