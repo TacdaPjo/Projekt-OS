@@ -8,7 +8,8 @@ TaskList *createTaskList(void);
 exception removeTask(TaskNode *task, TaskList *list);
 TaskNode *firstTask(TaskList *list);
 TaskNode *lastTask(TaskList *list);
-exception removeMsg(TaskList *list ,TCB *task);
+exception removeTCB(TaskList *list, TCB *task);
+exception moveListObj(list *firstList, list *secondList, listobj* obj);
 #pragma endregion three
 
 TaskList *createTaskList(void)
@@ -111,6 +112,66 @@ TaskNode *createListObj(TCB *tcb)
     return list_Obj;
 }
 
+TaskNode *firstTask(TaskList *list)
+{
+    return list->pHead->pNext;
+}
+
+TaskNode *lastTask(TaskList *list)
+{
+    return list->pHead->pPrevious;
+}
+
+exception findTask(TaskList *list, TCB *task)
+{
+    listobj *temp = list->pHead;
+    while (temp != NULL)
+    {
+        if (temp->pTask == task)
+            return OK;
+        if (temp->pNext == NULL)
+            break;
+        temp = temp->pNext;
+    }
+    return FAIL;
+}
+
+exception removeTCB(TaskList *list, TCB *task)
+{
+
+    if (task)
+    {
+        if (task == list->pHead->pTask && task == list->pTail->pTask)
+        {
+            list->pHead->pTask = NULL;
+            list->pTail->pTask = NULL;
+        }
+
+        else if (task == list->pTail->pTask)
+        {
+            list->pTail->pTask = PreviousTask;
+            PreviousTask = NULL;
+        }
+
+        else if (task == list->pHead->pTask)
+        {
+            list->pHead->pTask = NextTask;
+            NextTask = NULL;
+        }
+        else
+        {
+            TCB *p = PreviousTask;
+            TCB *n = NextTask;
+            PreviousTask = n;
+            NextTask = p;
+        }
+
+        memoryFree(task);
+        return OK;
+    }
+    return FAIL;
+}
+
 exception removeTask(TaskNode *task, TaskList *list)
 {
 
@@ -148,57 +209,26 @@ exception removeTask(TaskNode *task, TaskList *list)
     return FAIL;
 }
 
-TaskNode *firstTask(TaskList *list)
+exception moveListObj(list *firstList, list *secondList, listobj* obj)
 {
-    return list->pHead->pNext;
-}
-
-TaskNode *lastTask(TaskList *list)
-{
-    return list->pHead->pPrevious;
-}
-
-exception findTask(TaskList *list, TCB *task)
-{
-    listobj *temp = list->pHead;
-    while(temp!=NULL)
+    if(findTask(firstList, obj->pTask)==FAIL){return FAIL;}
+    if(findTask(secondList,obj->pTask)==OK){return OK;}
+    if(obj == firstList->pHead)
     {
-        if(temp->pTask == task)
-            return OK;
-        if(temp->pNext==NULL)
-            break;
-        temp = temp->pNext;
+        firstList->pHead = firstList->pHead->pNext;
+        firstList->pHead->pPrevious = NULL;
     }
-    return FAIL;
-}
-
-exception removeMsg(TaskList *list ,TCB *task)
-{
-
-    if (task)
+    if(obj == firstList->pTail)
     {
-        if (task == list->pHead->pTask && task == list->pTail->pTask)
-        {
-            list->pHead->pTask = NULL;
-            list->pTail->pTask = NULL;
-        }
-
-        else if (task == list->pTail->pTask)
-        {
-            list->pTail->pTask = task;
-            task = NULL;
-        }
-
-        else if (task == list->pHead->pTask)
-        {
-            list->pHead->pTask = task;
-            task = NULL;
-        }
-        
-
-       
-        memoryFree(task);
-        return OK;
+        firstList->pTail = firstList->pTail->pPrevious;
+        firstList->pTail->pNext = NULL;
     }
-    return FAIL;
+    else
+    {
+        obj->pNext->pPrevious = obj->pPrevious;
+        obj->pPrevious->pNext = obj->pNext;
+    }
+    addTaskToList(secondList, obj->pTask);
+    memoryFree(obj);
+
 }

@@ -9,7 +9,14 @@ exception send_no_wait(mailbox *mBox, void *Data);
 exception receive_no_wait(mailbox *mBox, void *Data);
 msg *createMsg(void *data, i32 size);
 exception removes_whole_mailbox(mailbox *mBox);
+exception mailbox_dequeue(mailbox *mBox, void *pData, msg *msg);
+exception mailbox_enqueue(mailbox *mBox, msg *msg);
 #pragma endregion reg
+
+exception isEmpty(mailbox *mBox)
+{
+    return mBox->pHead->pNext == mBox->pHead;
+}
 
 msg *createMsg(void *data, i32 size)
 {
@@ -73,58 +80,46 @@ exception removes_whole_mailbox(mailbox *mBox)
     }
 }
 
-exception mailbox_enqueue(mailbox *mBox, msg *msg)
+msg *msg_enqueue(mailbox *mBox)
 {
-
-
 }
 
-exception mailbox_dequeue(mailbox *mBox, void *pData, msg *msg)
+msg *msg_dequeue(mailbox *mBox)
 {
-    if (msg->Status == RECEIVER)
+    if (mBox == NULL || mBox->pHead == NULL)
+        return NULL;
+    msg *msg = mBox->pHead;
+    if (mBox->pHead == mBox->pTail)
     {
-        if (memcpy(msg->pData, pData, mBox->nDataSize) == FAIL)
-        {
-            return FAIL;
-        }
-        if (findTask(waitList, msg->pBlock->pTask))
-        {
-            addTaskToList(readyList, msg->pBlock->pTask);
-            removeMsg(waitList, msg->pBlock->pTask);
-            
-            return OK;
-        }
-        return OK;
+        mBox->pHead == NULL;
+        mBox->pTail == NULL;
+        return msg;
     }
+    mBox->pHead = mBox->pHead->pNext;
+    mBox->pHead->pPrevious = NULL;
+
+    return msg;
 }
 
 exception send_wait(mailbox *mBox, void *pData)
 {
     isr_off();
-
     uint32_t msgstatus = 0;
 
-    msg *temp = mBox->pHead;
-
-    while (temp->pData != NULL)
+    if (mBox->pHead == NULL && mBox->pHead->Status == RECEIVER)
+        return msgstatus = FAIL;
+    else
+        return msgstatus = OK;
+    if (msgstatus)
     {
-        if (temp->Status == RECEIVER)
-        {
-            msgstatus = 1;
-            break;
-        }
-        temp = temp->pNext;
-
-        if (msgstatus == 1)
-        {
-            if (memcpy(temp->pData, pData, mBox->nDataSize) == FAIL)
-            {
-                return FAIL;
-            }
-            temp->pBlock->pMessage = NULL;
-        }
+        msg *temp = mBox->pHead;
+        if(memcpy(temp->pData, pData, temp->pBlock->pMessage)
+    }
+    else
+    {
     }
     isr_on();
+    return OK;
 }
 
 exception receive_wait(mailbox *mBox, void *Data)
@@ -137,4 +132,5 @@ exception send_no_wait(mailbox *mBox, void *Data)
 
 exception receive_no_wait(mailbox *mBox, void *Data)
 {
+    return OK;
 }
