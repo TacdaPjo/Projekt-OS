@@ -4,6 +4,7 @@
         "at91sam3x8.h": "c",
         "*.s": "c",
         "kernel_admin.c": "cpp",
-        "system_sam3x.h": "c"
+        "system_sam3x.h": "c",
+        "cstdlib": "c"
     }
 }

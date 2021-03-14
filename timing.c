@@ -1,10 +1,10 @@
 #include "data.h"
 
 #pragma region twice
-void set_ticks(uint no_of_ticks);
+void set_ticks(uint nTicks);
 uint ticks(void);
 uint deadline(void);
-void set_deadline(uint nNew);
+void set_deadline(uint deadline);
 exception wait(uint nTicks);
 #pragma endregion twice
 
@@ -24,19 +24,31 @@ uint ticks(void)
 
 uint deadline(void)
 {
+    return ReadyList->pHead->pTask->Deadline;
 }
 
-void set_deadline(uint nNew)
-{
-}
-
-
-uint deadlineReached(TCB* task)
+void set_deadline(uint deadline)
 {
 
-    if(task->Deadline <= tickCounter)
-    return OK;
-    else
-    return FAIL;
-    
+    isr_off();
+
+    ReadyList->pHead->pTask->Deadline = deadline;
+
+    PreviousTask = NextTask;
+
+    push(ReadyList, pop(ReadyList));
+
+    NextTask = ReadyList->pHead->pTask;
+
+    SwitchContext();
+} 
+
+void TimerInt(void)
+{
+
+    tickCounter++;
+
+    check_TimerList();
+
+    check_WaitingList();
 }

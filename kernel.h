@@ -51,9 +51,9 @@ typedef struct
 // Message items
 typedef struct msgobj
 {
-        char *pData;
-        exception Status;
-        struct l_obj *pBlock;
+        char *pData; //Pointer to the message 
+        exception Status; //Status is sender or receiver
+        struct l_obj *pBlock; //Pointer to the blocked task should point to the waitinglist task
         struct msgobj *pPrevious;
         struct msgobj *pNext;
 } msg;
@@ -63,17 +63,17 @@ typedef struct
 {
         msg *pHead;
         msg *pTail;
-        int nDataSize;
-        int nMaxMessages;
-        int nMessages;
-        int nBlockedMsg;
+        int nDataSize; //Size of a single message / the message 
+        int nMaxMessages; 
+        int nMessages;  //Actual messages in mailbox
+        int nBlockedMsg; // number of messages that are blocked
 } mailbox;
 
 // Generic list item
 typedef struct l_obj
 {
         TCB *pTask;
-        uint nTCnt;
+        uint nTCnt; //TicksCounter set this for duration of task to sleep.
         msg *pMessage;
         struct l_obj *pPrevious;
         struct l_obj *pNext;
@@ -136,9 +136,15 @@ extern void LoadContext_In_Terminate(void);
 #pragma region includes
 #include "data.h"
 #include "kernel_admin.c"
-#include "timing.c"
 #include "tasks.c"
+#include "timing.c"
 #include "inter-process.c"
 #pragma endregion includes
 
+
+
+
 #endif // !KERNEL_H
+
+
+/* Make two flowchars one for running, iniziatlie. */

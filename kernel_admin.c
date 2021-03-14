@@ -6,11 +6,8 @@ extern TCB idle_task;
 
 #pragma region once
 void idleTask();
-void TimerInt();
 exception init_kernel(void);
 exception create_task(void (*body)(), uint d);
-TaskList *createTaskList(void);
-exception addTaskToList(TaskList *taskList, TCB *task);
 void *allocSafe(size_t size);
 void memoryFree(void *safeData);
 void terminate(void);
@@ -60,20 +57,6 @@ void memoryFree(void *safeData)
   }
 }
 
-
-//Make this work later on
-exception necDataStruct(list *list)
-{
-   if ((ReadyList = createTaskList()) == NULL)
-    return FAIL;
-  if ((WaitingList = createTaskList()) == NULL)
-    return FAIL;
-  if ((TimerList = createTaskList()) == NULL)
-    return FAIL;
-
-    return OK;
-}
-
 exception init_kernel(void)
 {
 
@@ -81,11 +64,11 @@ exception init_kernel(void)
   set_ticks(0);
 
   // Create necessary data structures
-  if ((ReadyList = createTaskList()) == NULL)
+  if ((ReadyList = createList()) == NULL)
     return FAIL;
-  if ((WaitingList = createTaskList()) == NULL)
+  if ((WaitingList = createList()) == NULL)
     return FAIL;
-  if ((TimerList = createTaskList()) == NULL)
+  if ((TimerList = createList()) == NULL)
     return FAIL;
 
 
@@ -110,7 +93,8 @@ exception init_kernel(void)
 void idleTask()
 {
   while (1)
-    ;
+  {
+  }
 }
 
 exception create_task(void (*taskBody)(), uint d)
@@ -118,7 +102,7 @@ exception create_task(void (*taskBody)(), uint d)
   TCB *task;
   task = (TCB *)allocSafe(sizeof(TCB));
   if (task == NULL)
-    return FAIL;
+  {return FAIL;}
 
   /* you must check if calloc was successful or not! */
 
@@ -132,7 +116,7 @@ exception create_task(void (*taskBody)(), uint d)
 
   if (kernelMode == INIT)
   {
-    addTaskToList(ReadyList, task);
+    push(ReadyList, createListObj(task));
     return SUCCESS;
   }
 
@@ -140,10 +124,10 @@ exception create_task(void (*taskBody)(), uint d)
   {
     isr_off();
 
-    PreviousTask = ReadyList->pHead->pTask;
+    PreviousTask = NextTask;
 
-    addTaskToList(ReadyList, task);
-
+    push(ReadyList, createListObj(task));
+    
     NextTask = ReadyList->pHead->pTask;
 
     SwitchContext();
@@ -157,7 +141,20 @@ void terminate(void)
 
   isr_off();
 
-  removeTask(ReadyList->pHead, ReadyList);
+  if(ReadyList->pHead != NULL)
+  {
+    listobj *temp = pop(ReadyList);
+
+    if(temp != NULL)
+    {
+      isr_on();
+      memoryFree(temp->pTask);
+      isr_off();
+      memoryFree(temp->pMessage);
+
+    }
+  }
+
 
   NextTask = ReadyList->pHead->pTask;
 
@@ -169,13 +166,13 @@ void terminate(void)
 void run(void)
 {
   //Initialize interrupt timer {Ticks = 0;}
-
-  set_ticks(0);
+  
+    set_ticks(0);
+  //tickCounter = 0;
 
   kernelMode = RUNNING;
 
   NextTask = ReadyList->pHead->pTask;
-  //NextTask = ReadyList->pHead->pTask;
 
   LoadContext_In_Run();
 
@@ -186,7 +183,3 @@ void run(void)
  */
 }
 
-void TimerInt(void)
-{
-  tickCounter++;
-}

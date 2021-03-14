@@ -14,12 +14,11 @@ extern i32 memCounter = 0;
 extern i32 kernelMode = 0;
 extern i32 tickCounter = 0;
 
+
+
 extern volatile i32 first = 0;
 
-extern TaskList *timerList;
-extern TaskList *waitList;
-extern TaskList *readyList;
-extern TCB *Running;
+uint compVal;
 
 TCB *PreviousTask;
 TCB *NextTask; /* Pointers to previous and next running tasks */
@@ -28,15 +27,12 @@ TCB *NextTask; /* Pointers to previous and next running tasks */
 
 #pragma region funcs
 TaskNode *createListObj(TCB *task);
-exception addTaskToList(list *taskList, TCB *task);
-int compareListObjs(TaskNode *obj1, TaskNode *obj2);
-TaskList *createTaskList(void);
-exception removeTask(TaskNode *task,TaskList *list);
+TaskList *createList(void);
 void TimerInt(void);
 void *allocSafe(size_t size);
 void memoryFree(void *Safedata);
-TaskNode *firstTask(TaskList *list);
-TaskNode *lastTask(TaskList *list);
+TaskNode *pop(TaskList *listPop);
+void push(TaskList *listo, TaskNode *addObj);
 #pragma endregion funcs
 
 #endif

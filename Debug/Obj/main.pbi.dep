@@ -21,9 +21,11 @@ main.pbi: C:\Users\Johan\OneDrive\Skrivbord\Projekt\ OS\main.c \
   C:\Program\ Files\ (x86)\IAR\ Systems\Embedded\ Workbench\ 8.4\arm\inc\c\limits.h \
   C:\Users\Johan\OneDrive\Skrivbord\Projekt\ OS/data.h \
   C:\Users\Johan\OneDrive\Skrivbord\Projekt\ OS/kernel_admin.c \
-  C:\Users\Johan\OneDrive\Skrivbord\Projekt\ OS/timing.c \
   C:\Users\Johan\OneDrive\Skrivbord\Projekt\ OS/tasks.c \
+  C:\Users\Johan\OneDrive\Skrivbord\Projekt\ OS/timing.c \
   C:\Users\Johan\OneDrive\Skrivbord\Projekt\ OS/inter-process.c \
-  C:\Users\Johan\OneDrive\Skrivbord\Projekt\ OS/memory_manager.c \
-  C:\Users\Johan\OneDrive\Skrivbord\Projekt\ OS/mallocstats.h \
-  C:\Users\Johan\OneDrive\Skrivbord\Projekt\ OS/testsreq/testmsg.c
+  C:\Users\Johan\OneDrive\Skrivbord\Projekt\ OS/testsreq/funcTest.c \
+  C:\Program\ Files\ (x86)\IAR\ Systems\Embedded\ Workbench\ 8.4\arm\inc\c\assert.h \
+  C:\Program\ Files\ (x86)\IAR\ Systems\Embedded\ Workbench\ 8.4\arm\inc\c\time.h \
+  C:\Program\ Files\ (x86)\IAR\ Systems\Embedded\ Workbench\ 8.4\arm\inc\c/time32.h \
+  C:\Program\ Files\ (x86)\IAR\ Systems\Embedded\ Workbench\ 8.4\arm\inc\c\stdio.h

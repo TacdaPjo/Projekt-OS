@@ -1,20 +1,9 @@
-        /*  Unit test to check if terminate() works correctly, and if create_task( )
-              (1) correctly initializes TCBs, and,
-              (2) correctly updates the ReadyList
-            assumes that you have used the name ReadyList to point to the Ready list
-            and assumes that you have written all of your kernel functions in a single
-            C file called kernel_functions.c
-            And of course, init_kernel() and run() also need to work correctly
-         */
 
- unsigned int g0=0, g1=0, g2=0, g3=1; 
+unsigned int g0=0, g1=0, g2=0, g3=1, g5 = 0, g6 = 0; 
 /* gate flags for various stages of unit test */
 
-
-
-
- unsigned int low_deadline  = 1000;    
- unsigned int high_deadline = 100000;
+unsigned int low_deadline  = 1000;    
+unsigned int high_deadline = 100000;
 
 mailbox *charMbox; 
 mailbox *intMbox; 
@@ -136,8 +125,40 @@ void task_body_3(){
   terminate();   
 }
 
-void labTwoTest()
+void task_body_4(){
+  int                 retVal_t4;
+  int               varInt_t4 = 0;
+  
+  retVal_t4 = wait (900);
+  if ( retVal_t4 !=  OK ) { while(1) { /* no use going further */  } }
+  
+  retVal_t4 = receive_wait( intMbox, &varInt_t4 );
+  if ( varInt_t4 != 255)  {while(1) {}}
+  
+  retVal_t4 = wait (4000); 
+  if ( retVal_t4 !=  DEADLINE_REACHED ) { while(1) { /* no use going further */  } }
+  terminate();   
+}
+
+void task_body_5(){
+  int                 retVal_t5;
+  int               varInt_t5 = 255;
+
+  retVal_t5 = send_wait( intMbox, &varInt_t5 );
+  if ( retVal_t5 != OK)  {while(1) {}}
+  
+  retVal_t5 = wait (200);
+  if ( retVal_t5 !=  OK ) { while(1) { /* no use going further */  } }
+  
+  terminate();   
+}
+
+void labThreeTest()
 {
+  SystemInit(); 
+  SysTick_Config(100000); 
+  SCB->SHP[((uint32_t)(SysTick_IRQn) & 0xF)-4] =  (0xE0);      
+  isr_off();
   
   g0 = OK;
   exception retVal = init_kernel(); 
@@ -175,16 +196,15 @@ void labTwoTest()
 
   retVal = create_task( task_body_3 , 2*low_deadline );
   if ( retVal !=  OK ) { while(1) { /* no use going further */  } }
- 
-
-
-
-    
-/*  retVal = create_task( task_body_4 , 10*high_deadline );
-  if ( retVal !=  OK ) { while(1) { /* no use going further */ 
-    
+  
+  retVal = create_task( task_body_4 , 3*low_deadline );
+  if ( retVal !=  OK ) { while(1) { /* no use going further */  } }
+  
+  retVal = create_task( task_body_5 , 4*low_deadline );
+  if ( retVal !=  OK ) { while(1) { /* no use going further */  } }
+  
   g3 =FAIL;
   run();
   
   while(1){ /* something is wrong with run */}
-} 
+}

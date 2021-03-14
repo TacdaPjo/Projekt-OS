@@ -2,17 +2,16 @@
 
 #pragma region three
 TaskNode *createListObj(TCB *task);
-exception addTaskToList(list *taskList, TCB *task);
-int compareListObjs(TaskNode *obj1, TaskNode *obj2);
-TaskList *createTaskList(void);
-exception removeTask(TaskNode *task, TaskList *list);
-TaskNode *firstTask(TaskList *list);
-TaskNode *lastTask(TaskList *list);
-exception removeTCB(TaskList *list, TCB *task);
-exception moveListObj(list *firstList, list *secondList, listobj* obj);
+TaskList *createList(void);
+exception moveListObj(list *firstList, list *secondList, listobj *obj);
+TaskNode *pop(TaskList *listPop);
+void push(TaskList *listo, TaskNode *addObj);
+msg *msg_dequeue(mailbox *mBox);
+void msg_enqueue(mailbox *mBox, msg *mes);
+void timeListPush(TaskNode *addObj);
 #pragma endregion three
 
-TaskList *createTaskList(void)
+TaskList *createList(void)
 {
     TaskList *task_list = allocSafe(sizeof(TaskList));
     if (task_list == NULL)
@@ -21,85 +20,7 @@ TaskList *createTaskList(void)
     return task_list;
 }
 
-exception addTaskToList(TaskList *taskList, TCB *task)
-{
-    TaskNode *list_obj;
-    TaskNode *temp;
-
-    if (taskList->pHead == NULL)
-    {
-
-        list_obj = createListObj(task);
-
-        if (list_obj == NULL)
-            return FAIL;
-
-        taskList->pHead = list_obj;
-        taskList->pTail = taskList->pHead;
-    }
-    else
-    {
-        list_obj = createListObj(task);
-        if (list_obj == NULL)
-            return FAIL;
-
-        temp = taskList->pHead;
-
-        while (1)
-        {
-            if (temp == taskList->pTail && !compareListObjs(temp, list_obj))
-            {
-                temp->pNext = list_obj;
-                taskList->pTail = list_obj;
-                list_obj->pPrevious = temp;
-                return OK;
-            }
-
-            else if (compareListObjs(temp, list_obj))
-            {
-                //if list_obj has a tighter deadline
-
-                if (temp != taskList->pHead)
-                {
-                    list_obj->pNext = temp;
-                    list_obj->pPrevious = temp->pPrevious;
-                    temp->pPrevious = list_obj;
-                    list_obj->pPrevious->pNext = list_obj;
-                }
-
-                else
-                {
-                    temp->pPrevious = list_obj;
-                    list_obj->pNext = temp;
-                    taskList->pHead = list_obj;
-                }
-                return OK;
-            }
-            temp = temp->pNext;
-        }
-
-        taskList->pTail->pNext = list_obj;
-        taskList->pTail = taskList->pTail->pNext;
-    }
-    return SUCCESS;
-}
-
-int compareListObjs(TaskNode *obj1, TaskNode *obj2)
-{
-
-    //if((obj1->pTask->Deadline == obj2->pTask->Deadline))
-    if ((obj1->pTask->Deadline) > (obj2->pTask->Deadline))
-    {
-        return OK;
-    }
-
-    else
-    {
-        return FAIL;
-    }
-}
-
-TaskNode *createListObj(TCB *tcb)
+TaskNode *createListObj(TCB *task)
 {
     TaskNode *list_Obj;
 
@@ -107,128 +28,265 @@ TaskNode *createListObj(TCB *tcb)
         return NULL;
 
     list_Obj->nTCnt = ticks();
-    list_Obj->pTask = tcb;
+    list_Obj->pTask = task;
 
     return list_Obj;
 }
 
-TaskNode *firstTask(TaskList *list)
+TaskNode *moveFromList(TaskList *firstList, TaskNode *task)
 {
-    return list->pHead->pNext;
-}
-
-TaskNode *lastTask(TaskList *list)
-{
-    return list->pHead->pPrevious;
-}
-
-exception findTask(TaskList *list, TCB *task)
-{
-    listobj *temp = list->pHead;
-    while (temp != NULL)
+    if (firstList->pHead == NULL || firstList == NULL || task == NULL)
     {
-        if (temp->pTask == task)
-            return OK;
-        if (temp->pNext == NULL)
-            break;
-        temp = temp->pNext;
+        return NULL;
     }
-    return FAIL;
-}
+    TaskNode *temp;
 
-exception removeTCB(TaskList *list, TCB *task)
-{
 
-    if (task)
+    if (firstList->pHead == task)
     {
-        if (task == list->pHead->pTask && task == list->pTail->pTask)
-        {
-            list->pHead->pTask = NULL;
-            list->pTail->pTask = NULL;
-        }
-
-        else if (task == list->pTail->pTask)
-        {
-            list->pTail->pTask = PreviousTask;
-            PreviousTask = NULL;
-        }
-
-        else if (task == list->pHead->pTask)
-        {
-            list->pHead->pTask = NextTask;
-            NextTask = NULL;
-        }
-        else
-        {
-            TCB *p = PreviousTask;
-            TCB *n = NextTask;
-            PreviousTask = n;
-            NextTask = p;
-        }
-
-        memoryFree(task);
-        return OK;
-    }
-    return FAIL;
-}
-
-exception removeTask(TaskNode *task, TaskList *list)
-{
-
-    if (task)
-    {
-        if (task == list->pHead && task == list->pTail)
-        {
-            list->pHead = NULL;
-            list->pTail = NULL;
-        }
-
-        else if (task == list->pTail)
-        {
-            list->pTail = task->pPrevious;
-            task->pPrevious = NULL;
-        }
-
-        else if (task == list->pHead)
-        {
-            list->pHead = task->pNext;
-            task->pNext = NULL;
-        }
-        else
-        {
-            TaskNode *p = task->pPrevious;
-            TaskNode *n = task->pNext;
-            p->pNext = n;
-            n->pPrevious = p;
-        }
-
-        memoryFree(task->pTask);
-        memoryFree(task);
-        return OK;
-    }
-    return FAIL;
-}
-
-exception moveListObj(list *firstList, list *secondList, listobj* obj)
-{
-    if(findTask(firstList, obj->pTask)==FAIL){return FAIL;}
-    if(findTask(secondList,obj->pTask)==OK){return OK;}
-    if(obj == firstList->pHead)
-    {
+        temp = firstList->pHead;
         firstList->pHead = firstList->pHead->pNext;
         firstList->pHead->pPrevious = NULL;
+        return temp;
     }
-    if(obj == firstList->pTail)
+
+    while (temp->pNext != NULL )
     {
-        firstList->pTail = firstList->pTail->pPrevious;
-        firstList->pTail->pNext = NULL;
+
+        if (temp == task || temp->pTask == task->pTask)
+        {
+            break;
+        }
+        temp = temp->pNext;
+    }
+
+    if (temp->pNext == NULL)
+    {
+
+        temp->pPrevious->pNext = NULL;
+        return temp;
     }
     else
     {
-        obj->pNext->pPrevious = obj->pPrevious;
-        obj->pPrevious->pNext = obj->pNext;
+        temp->pPrevious->pNext = temp->pNext;
+        temp->pNext->pPrevious = temp->pPrevious;
+        return temp;
     }
-    addTaskToList(secondList, obj->pTask);
-    memoryFree(obj);
+}
 
+TaskNode *pop(TaskList *listPop)
+{
+    listobj *deleteObj;
+    deleteObj = listPop->pHead;
+
+    if (listPop->pHead == listPop->pTail)
+    {
+        listPop->pHead = listPop->pTail = NULL;
+    }
+    else
+    {
+        listPop->pHead = listPop->pHead->pNext;
+        listPop->pHead->pPrevious = NULL;
+    }
+
+    deleteObj->pNext = NULL;
+    deleteObj->pPrevious = NULL;
+    return deleteObj;
+}
+
+void push(TaskList *listo, TaskNode *addObj)
+{
+    TaskNode *temp;
+    temp = listo->pHead;
+
+    if (listo->pHead == NULL && listo->pTail == NULL)
+    {
+
+        listo->pHead = addObj;
+        listo->pTail = addObj;
+        temp->pNext = NULL;
+        return;
+    }
+    else
+    {
+        if (addObj->pTask->Deadline < temp->pTask->Deadline)
+        {
+
+             addObj->pNext = temp;
+            temp->pPrevious = addObj;
+            listo->pHead = addObj;
+            return;
+        }
+        else
+        {
+            while (temp->pNext != NULL && temp->pTask->Deadline <= addObj->pTask->Deadline)
+            {
+                temp = temp->pNext;
+            }
+            if (temp->pNext == NULL && temp->pTask->Deadline <= addObj->pTask->Deadline)
+            {
+
+                temp->pNext = addObj;
+                addObj->pPrevious = temp;
+                listo->pTail = addObj;
+                addObj->pNext = NULL;
+                return;
+            }
+            else
+            {
+                temp->pPrevious->pNext = addObj;
+                addObj->pPrevious = temp->pPrevious;
+                temp->pPrevious = addObj;
+                addObj->pNext = temp;
+                return;
+            }
+        }
+    }
+}
+
+exception check_TimerList()
+{
+    listobj *temp = TimerList->pHead;
+
+    uint comp;
+
+    while (temp != NULL)
+    {
+        if (temp->nTCnt <= temp->pTask->Deadline)
+        {
+            comp = temp->nTCnt;
+        }
+        else
+        {
+            comp = temp->pTask->Deadline;
+        }
+        if (comp > tickCounter)
+        {
+            break;
+        }
+        else
+        {
+            temp = temp->pNext;
+            push(ReadyList, pop(TimerList));
+            PreviousTask = NextTask;
+            NextTask = ReadyList->pHead->pTask;
+        }
+        return OK;
+    }
+}
+
+void check_WaitingList()
+{
+    listobj *temp = WaitingList->pHead;
+
+    while (temp != NULL)
+    {
+        if (temp->pTask->Deadline > tickCounter)
+        {
+            break;
+        }
+        else
+        {
+            temp->pMessage->pPrevious->pNext = temp->pMessage->pNext;
+            temp->pMessage->pNext->pPrevious = temp->pMessage->pPrevious;
+            memoryFree(temp->pMessage);
+            temp = temp->pNext;
+            push(ReadyList, pop(WaitingList));
+            PreviousTask = NextTask;
+            NextTask = ReadyList->pHead->pTask;
+        }
+    }
+}
+
+void timeListPush(TaskNode *addObj)
+{
+
+    listobj *temp = TimerList->pHead;
+
+    if (addObj->pTask->Deadline >= addObj->nTCnt)
+    {
+        compVal = addObj->nTCnt;
+    }
+    else
+    {
+        compVal = addObj->pTask->Deadline;
+    }
+    if (temp == NULL)
+    {
+
+        TimerList->pHead = TimerList->pTail = addObj;
+        TimerList->pHead->pNext = NULL;
+    }
+    else
+    {
+        if (compVal <= TimerList->pHead->pTask->Deadline || compVal <= TimerList->pHead->nTCnt)
+        {
+            
+            addObj->pNext = TimerList->pHead;
+            TimerList->pHead->pPrevious = addObj;
+            TimerList->pHead = addObj;
+        }
+        else
+        {
+            while (temp->pNext != NULL && (temp->pTask->Deadline <= compVal || temp->nTCnt <= compVal))
+            {
+                temp = temp->pNext;
+            }
+            if (temp->pNext == NULL && (temp->pTask->Deadline <= compVal || temp->nTCnt <= compVal))
+            {
+
+                temp->pNext = addObj;
+                addObj->pPrevious = temp;
+                return;
+            }
+            else
+            {
+                temp->pPrevious->pNext = addObj;
+                addObj->pPrevious = temp->pPrevious;
+                temp->pPrevious = addObj;
+                addObj->pNext = temp;
+            }
+        }
+    }
+}
+
+//Enqueue from the tail
+void msg_enqueue(mailbox *mBox, msg *mes)
+{
+    if (mBox->nMessages == 0)
+    {
+        mBox->pHead = mBox->pTail = mes;
+        mBox->nMessages++;
+    }
+    else
+    {
+        mes->pPrevious = mBox->pTail;
+        mBox->pTail->pNext = mes;
+        mBox->pTail = mes;
+        mBox->nMessages++;
+    }
+}
+
+//dequeue from the head
+msg *msg_dequeue(mailbox *mBox)
+{
+
+    if (mBox->pHead == NULL)
+        return NULL;
+
+    msg *temp = mBox->pHead;
+    if (mBox->pHead == mBox->pTail)
+    {
+        mBox->pHead = NULL;
+        mBox->pTail = NULL;
+        mBox->nMessages--;
+        return temp;
+    }
+    else
+    {
+        mBox->pHead = mBox->pHead->pNext;
+        mBox->pHead->pPrevious = NULL;
+        mBox->nMessages--;
+        return temp;
+    }
 }
